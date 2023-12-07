@@ -2,6 +2,7 @@
 Imports System.Data
 Imports DevExpress.Xpo.DB.Helpers
 Imports DevExpress.XtraEditors
+Imports System.Windows.Forms.VisualStyles.VisualStyleElement.ProgressBar
 
 Module cls_access
     Public Function Access(path As String, table_name As String, column_name As String) As List(Of String)
@@ -61,25 +62,29 @@ Module cls_access
     End Function
     Public Function Access_Dam(path As String) As List(Of Cls_dam)
         Dim Dam As New List(Of Cls_dam)
-        Dim DamItem = New Cls_dam()
+
         'Tên dầm
-        Dim TenDam_List As List(Of String) = Access(path, "Beam Object Connectivity", "Unique Name")
-        For Each tenDam As String In TenDam_List
-            DamItem.Tendam = tenDam
-        Next
-
-        ' Tải trọng
+        Dim TenDam_List As List(Of String) = Access(path, "Element Forces - Beams", "Unique Name")
         Dim Taitrong_list As List(Of String) = Access(path, "Element Forces - Beams", "Output Case")
-        For Each taitrong As String In Taitrong_list
-            DamItem.TaiTrong = taitrong
+        Dim Q_list As List(Of String) = Access(path, "Element Forces - Beams", "V2")
+        Dim Mmax_list As List(Of String) = Access(path, "Element Forces - Beams", "M3")
+        For i = 0 To Taitrong_list.Count - 1
+            Dim DamItem = New Cls_dam()
+
+            ' Tên dầm
+            DamItem.Tendam = TenDam_List(i)
+
+            ' Tải trọng
+            DamItem.TaiTrong = Taitrong_list(i)
+
+            ' Lực cắt
+            DamItem.Qmax = Q_list(i)
+
+            DamItem.Mmax = Mmax_list(i)
+
+            Dam.Add(DamItem)
         Next
 
-        ' Lực cắt
-        Dim Q_list As List(Of String) = Access(path, "Element Forces - Beams", "V2")
-        For Each Q As String In Q_list
-            DamItem.Qmax = Q
-        Next
-        Dam.Add(DamItem)
         Return Dam
     End Function
 
