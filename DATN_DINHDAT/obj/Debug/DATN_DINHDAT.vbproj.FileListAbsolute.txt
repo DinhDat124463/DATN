@@ -1,0 +1,14 @@
+D:\Máy tính\Hoc\DATN_DINHDAT\DATN_DINHDAT\obj\Debug\DATN_DINHDAT.vbproj.AssemblyReference.cache
+D:\Máy tính\Hoc\DATN_DINHDAT\DATN_DINHDAT\obj\Debug\DATN_DINHDAT.vbproj.SuggestedBindingRedirects.cache
+D:\Máy tính\Hoc\DATN_DINHDAT\DATN_DINHDAT\obj\Debug\DATN_DINHDAT.Form_Main.resources
+D:\Máy tính\Hoc\DATN_DINHDAT\DATN_DINHDAT\obj\Debug\DATN_DINHDAT.Resources.resources
+D:\Máy tính\Hoc\DATN_DINHDAT\DATN_DINHDAT\obj\Debug\DATN_DINHDAT.vbproj.GenerateResource.cache
+D:\Máy tính\Hoc\DATN_DINHDAT\DATN_DINHDAT\obj\Debug\DATN_DINHDAT.vbproj.CoreCompileInputs.cache
+D:\Máy tính\Hoc\DATN_DINHDAT\DATN_DINHDAT\bin\Debug\DATN_DINHDAT.exe.config
+D:\Máy tính\Hoc\DATN_DINHDAT\DATN_DINHDAT\bin\Debug\DATN_DINHDAT.exe
+D:\Máy tính\Hoc\DATN_DINHDAT\DATN_DINHDAT\bin\Debug\DATN_DINHDAT.pdb
+D:\Máy tính\Hoc\DATN_DINHDAT\DATN_DINHDAT\bin\Debug\DATN_DINHDAT.xml
+D:\Máy tính\Hoc\DATN_DINHDAT\DATN_DINHDAT\obj\Debug\DATN_DINHDAT.exe
+D:\Máy tính\Hoc\DATN_DINHDAT\DATN_DINHDAT\obj\Debug\DATN_DINHDAT.xml
+D:\Máy tính\Hoc\DATN_DINHDAT\DATN_DINHDAT\obj\Debug\DATN_DINHDAT.pdb
+D:\Máy tính\Hoc\DATN_DINHDAT\DATN_DINHDAT\obj\Debug\DATN_DINHDAT.exe.licenses
