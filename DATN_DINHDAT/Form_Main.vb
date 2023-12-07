@@ -29,15 +29,15 @@ Public Class Form_Main
 
             Access_Tang(filePath)
             Access_Dam(filePath)
-            '' Tiết diện dầm
-            ''Dim Tietdien_Dam As DataTable = Read_Access(filePath, "Frame Section Property Definitions - Concrete Rectangular", "Name, Depth, Width")
-            'Dim tietdien As New Form_Dulieudam()
-            'panel_main.Controls.Clear()
-            'tietdien.TopLevel = False
-            'tietdien.Dock = DockStyle.Fill
-            'panel_main.Controls.Add(tietdien)
-            'tietdien.Show()
-            '' tietdien.dgv_tietdien.DataSource = Tietdien_Dam
+            ' Tiết diện dầm
+            Dim Tietdien_Dam As DataTable = Read_Access(filePath)
+            Dim tietdien As New Form_Dulieudam()
+            panel_main.Controls.Clear()
+            tietdien.TopLevel = False
+            tietdien.Dock = DockStyle.Fill
+            panel_main.Controls.Add(tietdien)
+            tietdien.Show()
+            tietdien.dgv_tietdien.DataSource = Tietdien_Dam
             '' Nội lực dầm
             '' Dim Noiluc_Dam As DataTable = Read_Access(filePath, "Element Forces - Beams", "Story,Station,V2,V3,T,M2,M3")
             'tietdien.TopLevel = False

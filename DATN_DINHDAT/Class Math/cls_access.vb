@@ -87,30 +87,108 @@ Module cls_access
 
         Return Dam
     End Function
+    'Public Function Read_Access(path As String) As DataTable
+    '    Dim connectionString As String = $"Provider=Microsoft.Jet.OLEDB.4.0;Data Source={path};Persist Security Info=False;"
+    '    Dim data As New DataTable
 
-    Public Function Read_Access_ToList(path As String, table_name As String, columnName As String) As List(Of String)
+    '    Using connection As New OleDbConnection(connectionString)
+    '        connection.Open()
 
+    '        Dim sqlQuery As String = "SELECT [Story], [UniqueName],[Design Type], [Length],[Design Section] FROM [Frame Assignments - Summary];"
+    '        Dim query As String = "SELECT [Frame Section Property Definitions - Concrete Rectangular].[Name],
+    '                               [Frame Section Property Definitions - Concrete Rectangular].[Depth],
+    '                               [Frame Section Property Definitions - Concrete Rectangular].[Width]
+    '                  FROM [Frame Section Property Definitions - Concrete Rectangular]
+    '                  INNER JOIN [Frame Assignments - Summary] ON [Frame Assignments - Summary].[Design Section] = [Frame Section Property Definitions - Concrete Rectangular].[Name]"
+
+    '        Using command As New OleDbCommand(sqlQuery, connection)
+    '            Using reader As OleDbDataReader = command.ExecuteReader()
+    '                ' Tạo cột trong DataTable
+    '                data.Columns.Add("Tầng", GetType(String))
+    '                data.Columns.Add("Tên dầm", GetType(String))
+    '                data.Columns.Add("Design Type", GetType(String))
+    '                data.Columns.Add("Chiều dài dầm", GetType(Double))
+    '                data.Columns.Add("Design Section", GetType(String))
+    '                data.Columns.Remove("Design Type")
+
+    '                While reader.Read()
+    '                    If reader.GetString(2) = "Beam" Then
+    '                        Dim row As DataRow = data.NewRow()
+    '                        row("Tầng") = reader.GetString(0)
+    '                        row("Tên dầm") = reader.GetString(1)
+    '                        row("Chiều dài dầm") = reader.GetDouble(3)
+    '                        row("Design Section") = reader.GetString(4)
+    '                        data.Rows.Add(row)
+    '                    End If
+    '                End While
+    '            End Using
+    '        End Using
+    '    End Using
+
+    '    Return data
+    'End Function
+    Public Function Read_Access(path As String) As DataTable
         Dim connectionString As String = $"Provider=Microsoft.Jet.OLEDB.4.0;Data Source={path};Persist Security Info=False;"
-
-        Dim data As New List(Of String)
+        Dim data As New DataTable
 
         Using connection As New OleDbConnection(connectionString)
             connection.Open()
 
-            ' Truy vấn SQL để lấy dữ liệu từ cột cụ thể trong bảng
-            Dim sqlQuery As String = $"SELECT [{columnName}] FROM [{table_name}];"
+            Dim sqlQuery As String = "SELECT [Story], [UniqueName],[Design Type], [Length],[Design Section] FROM [Frame Assignments - Summary];"
+            Dim query As String = "SELECT [Frame Section Property Definitions - Concrete Rectangular].[Name],
+                               [Frame Section Property Definitions - Concrete Rectangular].[Depth],
+                               [Frame Section Property Definitions - Concrete Rectangular].[Width]
+                  FROM [Frame Section Property Definitions - Concrete Rectangular]
+                  INNER JOIN [Frame Assignments - Summary] ON [Frame Assignments - Summary].[Design Section] = [Frame Section Property Definitions - Concrete Rectangular].[Name]"
 
             Using command As New OleDbCommand(sqlQuery, connection)
                 Using reader As OleDbDataReader = command.ExecuteReader()
-                    ' Đọc dữ liệu từ cột cụ thể
+                    ' Tạo cột trong DataTable
+                    data.Columns.Add("Tầng", GetType(String))
+                    data.Columns.Add("Tên dầm", GetType(String))
+                    data.Columns.Add("Design Type", GetType(String))
+                    data.Columns.Add("Chiều dài dầm", GetType(Double))
+                    data.Columns.Add("Design Section", GetType(String))
+                    data.Columns.Add("Bề rộng", GetType(Double)) ' Thêm cột mới từ truy vấn thứ hai
+                    data.Columns.Add("Chiều cao", GetType(Double)) ' Thêm cột mới từ truy vấn thứ hai
+
                     While reader.Read()
-                        data.Add(reader.GetString(0))
+                        If reader.GetString(2) = "Beam" Then
+                            Dim row As DataRow = data.NewRow()
+                            row("Tầng") = reader.GetString(0)
+                            row("Tên dầm") = reader.GetString(1)
+                            row("Chiều dài dầm") = reader.GetDouble(3)
+                            row("Design Section") = reader.GetString(4)
+                            data.Rows.Add(row)
+                        End If
+                    End While
+                End Using
+            End Using
+
+            ' Thực hiện truy vấn thứ hai và thêm dữ liệu vào DataTable
+            Using command As New OleDbCommand(query, connection)
+                Using reader As OleDbDataReader = command.ExecuteReader()
+                    While reader.Read()
+                        ' Tìm hàng tương ứng trong DataTable và thêm dữ liệu mới
+                        Dim matchingRows() As DataRow = data.Select($"[Design Section] = '{reader.GetString(0)}'")
+                        For Each matchingRow As DataRow In matchingRows
+                            matchingRow("Bề rộng") = reader.GetDouble(1)
+                            matchingRow("Chiều cao") = reader.GetDouble(2)
+                        Next
                     End While
                 End Using
             End Using
         End Using
+        data.Columns.Remove("Design Type")
+        data.Columns.Remove("Design Section")
         Return data
     End Function
+
+
+
+
+
+
     Private Function Value_Max(tang As String, hoatTai As String) As Double
         Dim connectionString As String = "Your Connection String"
         Dim query As String = $"SELECT MAX(Column12) AS MaxValue " &
