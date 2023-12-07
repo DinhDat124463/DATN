@@ -1,37 +1,133 @@
 ﻿Imports System.Data.OleDb
 Imports System.Data
+Imports DevExpress.Xpo.DB.Helpers
+Imports DevExpress.XtraEditors
 
 Module cls_access
-    Public Function Read_Access(path As String, table_name As String) As DataTable
-        Dim dataTable As New DataTable()
+    Public Function Access(path As String, table_name As String, column_name As String) As List(Of String)
+        Dim result As New List(Of String)
 
         Dim connectionString As String = $"Provider=Microsoft.Jet.OLEDB.4.0;Data Source={path};Persist Security Info=False;"
 
-        Dim query As String = $"SELECT * FROM [{table_name}]"
-
+        ' Modify the query to select specific columns based on user input
+        Dim query As String = $"SELECT [{column_name}] FROM [{table_name}]"
 
         Using connection As New OleDbConnection(connectionString)
             connection.Open()
 
             Using command As New OleDbCommand(query, connection)
                 Using reader As OleDbDataReader = command.ExecuteReader()
-                    ' Tạo các cột cho DataTable tương ứng với cấu trúc của bảng
-                    For i As Integer = 0 To reader.FieldCount - 1
-                        dataTable.Columns.Add(reader.GetName(i))
-                    Next
-
-                    ' Đọc dữ liệu từ cột cụ thể và thêm vào DataTable
                     While reader.Read()
-                        Dim newRow As DataRow = dataTable.NewRow()
-                        For i As Integer = 0 To reader.FieldCount - 1
-                            newRow(i) = reader(i)
-                        Next
-                        dataTable.Rows.Add(newRow)
+                        If Not reader.IsDBNull(0) Then
+                            Dim value As Object = reader.GetValue(0)
+
+                            If TypeOf value Is String Then
+                                ' Ép kiểu nếu kiểu là String
+                                result.Add(DirectCast(value, String))
+                            ElseIf TypeOf value Is Double Then
+                                ' Ép kiểu nếu kiểu là Double
+                                result.Add(DirectCast(value, Double).ToString())
+                            Else
+                                ' Xử lý kiểu dữ liệu khác nếu cần
+                                ' Nếu kiểu dữ liệu không khớp với String hoặc Double, bạn có thể thêm xử lý ở đây
+                            End If
+                        Else
+                            ' Xử lý giá trị null nếu cần
+                            result.Add("Value is null")
+                        End If
                     End While
+
                 End Using
             End Using
         End Using
 
-        Return dataTable
+        Return result
+    End Function
+    Public Function Access_Tang(path As String) As List(Of Cls_congtrinh)
+        Dim Tang As New List(Of Cls_congtrinh)
+
+        ' Lấy giá trị từ cơ sở dữ liệu - Giả sử hàm Access trả về một danh sách các giá trị từ cột "Story"
+        Dim tenTangList As List(Of String) = Access(path, "Centers Of Mass And Rigidity", "Story")
+
+        ' Duyệt qua danh sách các tên tầng và thêm chúng vào đối tượng Cls_congtrinh
+        For Each tenTang As String In tenTangList
+            Dim _Tang = New Cls_congtrinh() ' Tạo mới một đối tượng _Tang cho mỗi tầng
+            Dim tangItem As New Cls_tang()
+            tangItem.TenTang = tenTang
+            _Tang.Danhsachtang.Add(tangItem)
+            congtrinh.Danhsachtang.Add(tangItem)
+        Next
+        Return Tang
+    End Function
+    Public Function Access_Dam(path As String) As List(Of Cls_dam)
+        Dim Dam As New List(Of Cls_dam)
+        Dim DamItem = New Cls_dam()
+        'Tên dầm
+        Dim TenDam_List As List(Of String) = Access(path, "Beam Object Connectivity", "Unique Name")
+        For Each tenDam As String In TenDam_List
+            DamItem.Tendam = tenDam
+        Next
+
+        ' Tải trọng
+        Dim Taitrong_list As List(Of String) = Access(path, "Element Forces - Beams", "Output Case")
+        For Each taitrong As String In Taitrong_list
+            DamItem.TaiTrong = taitrong
+        Next
+
+        ' Lực cắt
+        Dim Q_list As List(Of String) = Access(path, "Element Forces - Beams", "V2")
+        For Each Q As String In Q_list
+            DamItem.Qmax = Q
+        Next
+        Dam.Add(DamItem)
+        Return Dam
+    End Function
+
+    Public Function Read_Access_ToList(path As String, table_name As String, columnName As String) As List(Of String)
+
+        Dim connectionString As String = $"Provider=Microsoft.Jet.OLEDB.4.0;Data Source={path};Persist Security Info=False;"
+
+        Dim data As New List(Of String)
+
+        Using connection As New OleDbConnection(connectionString)
+            connection.Open()
+
+            ' Truy vấn SQL để lấy dữ liệu từ cột cụ thể trong bảng
+            Dim sqlQuery As String = $"SELECT [{columnName}] FROM [{table_name}];"
+
+            Using command As New OleDbCommand(sqlQuery, connection)
+                Using reader As OleDbDataReader = command.ExecuteReader()
+                    ' Đọc dữ liệu từ cột cụ thể
+                    While reader.Read()
+                        data.Add(reader.GetString(0))
+                    End While
+                End Using
+            End Using
+        End Using
+        Return data
+    End Function
+    Private Function Value_Max(tang As String, hoatTai As String) As Double
+        Dim connectionString As String = "Your Connection String"
+        Dim query As String = $"SELECT MAX(Column12) AS MaxValue " &
+                              $"FROM YourTableName " &
+                              $"WHERE Column1 = '{tang}' " &
+                              $"AND Column4 = '{hoatTai}' " &
+                              "AND Column6 IS NOT NULL " &
+                              "AND Column6 > 0;"
+
+        Using connection As New OleDbConnection(connectionString)
+            connection.Open()
+
+            Using command As New OleDbCommand(query, connection)
+                Using reader As OleDbDataReader = command.ExecuteReader()
+                    If reader.Read() Then
+                        Return If(reader("MaxValue") IsNot DBNull.Value, Convert.ToDouble(reader("MaxValue")), 0)
+                    Else
+                        MessageBox.Show("No data found.")
+                        Return 0
+                    End If
+                End Using
+            End Using
+        End Using
     End Function
 End Module

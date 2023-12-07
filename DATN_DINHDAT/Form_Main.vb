@@ -1,5 +1,7 @@
 ﻿Imports System.Data.OleDb
 Imports System.IO
+Imports DevExpress.Utils.Html.Internal
+
 Public Class Form_Main
     Private Sub BarButtonItem8_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BarButtonItem8.ItemClick
 
@@ -11,6 +13,7 @@ Public Class Form_Main
 
     Private Sub Form_Main_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.CenterToScreen()
+        Me.WindowState = FormWindowState.Maximized
     End Sub
     ' Mở file Access
     Private Sub BarButtonItem4_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BarButtonItem4.ItemClick
@@ -22,9 +25,33 @@ Public Class Form_Main
         If openFileDialog.ShowDialog() = DialogResult.OK Then
             Dim filePath As String = openFileDialog.FileName
             SavePathToFile(filePath)
-            Read_Access(filePath, "Element Forces - Beams")
-        End If
+            congtrinh = New Cls_congtrinh
 
+            Access_Tang(filePath)
+            Access_Dam(filePath)
+            '' Tiết diện dầm
+            ''Dim Tietdien_Dam As DataTable = Read_Access(filePath, "Frame Section Property Definitions - Concrete Rectangular", "Name, Depth, Width")
+            'Dim tietdien As New Form_Dulieudam()
+            'panel_main.Controls.Clear()
+            'tietdien.TopLevel = False
+            'tietdien.Dock = DockStyle.Fill
+            'panel_main.Controls.Add(tietdien)
+            'tietdien.Show()
+            '' tietdien.dgv_tietdien.DataSource = Tietdien_Dam
+            '' Nội lực dầm
+            '' Dim Noiluc_Dam As DataTable = Read_Access(filePath, "Element Forces - Beams", "Story,Station,V2,V3,T,M2,M3")
+            'tietdien.TopLevel = False
+            'tietdien.Dock = DockStyle.Fill
+            'panel_main.Controls.Add(tietdien)
+            'tietdien.Show()
+            ''tietdien.dgv_noiluc.DataSource = Noiluc_Dam
+
+            '' lấy tên các tầng 
+            'Dim list_tang As List(Of String) = Read_Access_ToList(filePath, "Element Forces - Beams", "Story")
+            'Dim list_TaiTrong As List(Of String) = Read_Access_ToList(filePath, "Element Forces - Beams", "Output Case")
+            'list_tang = list_tang.Distinct().ToList()
+            'list_TaiTrong = list_TaiTrong.Distinct().ToList()
+        End If
     End Sub
 
     Private Sub SavePathToFile(filePath As String)

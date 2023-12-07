@@ -38,9 +38,11 @@ Partial Class Form_Main
         Me.RibbonPageGroup3 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.RibbonPageGroup5 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.RibbonPageGroup4 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
-        Me.panel_vatlieu = New System.Windows.Forms.Panel()
+        Me.Panel1 = New System.Windows.Forms.Panel()
         Me.panel_main = New System.Windows.Forms.Panel()
+        Me.panel_vatlieu = New System.Windows.Forms.Panel()
         CType(Me.RibbonControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel1.SuspendLayout()
         Me.SuspendLayout()
         '
         'RibbonControl1
@@ -92,9 +94,9 @@ Partial Class Form_Main
         '
         'btn_noiluc
         '
-        Me.btn_noiluc.Caption = "Nội lực"
+        Me.btn_noiluc.Caption = "Dữ liệu dầm"
         Me.btn_noiluc.Id = 6
-        Me.btn_noiluc.ImageOptions.Image = Global.DATN_DINHDAT.My.Resources.Resources.Screenshot_2020_12_22_134144
+        Me.btn_noiluc.ImageOptions.Image = Global.DATN_DINHDAT.My.Resources.Resources.beam
         Me.btn_noiluc.Name = "btn_noiluc"
         Me.btn_noiluc.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large
         '
@@ -156,7 +158,6 @@ Partial Class Form_Main
         '
         'RibbonPageGroup3
         '
-        Me.RibbonPageGroup3.ItemLinks.Add(Me.btn_tietdien)
         Me.RibbonPageGroup3.ItemLinks.Add(Me.btn_noiluc)
         Me.RibbonPageGroup3.ItemLinks.Add(Me.btn_tohop)
         Me.RibbonPageGroup3.ItemLinks.Add(Me.BarButtonItem8)
@@ -175,33 +176,43 @@ Partial Class Form_Main
         Me.RibbonPageGroup4.Name = "RibbonPageGroup4"
         Me.RibbonPageGroup4.Text = "Thuyết minh"
         '
-        'panel_vatlieu
+        'Panel1
         '
-        Me.panel_vatlieu.Dock = System.Windows.Forms.DockStyle.Left
-        Me.panel_vatlieu.Location = New System.Drawing.Point(0, 183)
-        Me.panel_vatlieu.Name = "panel_vatlieu"
-        Me.panel_vatlieu.Size = New System.Drawing.Size(200, 460)
-        Me.panel_vatlieu.TabIndex = 1
+        Me.Panel1.Controls.Add(Me.panel_main)
+        Me.Panel1.Controls.Add(Me.panel_vatlieu)
+        Me.Panel1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Panel1.Location = New System.Drawing.Point(0, 183)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(1075, 460)
+        Me.Panel1.TabIndex = 4
         '
         'panel_main
         '
         Me.panel_main.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.panel_main.Location = New System.Drawing.Point(200, 183)
+        Me.panel_main.Location = New System.Drawing.Point(208, 0)
         Me.panel_main.Name = "panel_main"
-        Me.panel_main.Size = New System.Drawing.Size(875, 460)
-        Me.panel_main.TabIndex = 2
+        Me.panel_main.Size = New System.Drawing.Size(867, 460)
+        Me.panel_main.TabIndex = 4
+        '
+        'panel_vatlieu
+        '
+        Me.panel_vatlieu.Dock = System.Windows.Forms.DockStyle.Left
+        Me.panel_vatlieu.Location = New System.Drawing.Point(0, 0)
+        Me.panel_vatlieu.Name = "panel_vatlieu"
+        Me.panel_vatlieu.Size = New System.Drawing.Size(208, 460)
+        Me.panel_vatlieu.TabIndex = 3
         '
         'Form_Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1075, 643)
-        Me.Controls.Add(Me.panel_main)
-        Me.Controls.Add(Me.panel_vatlieu)
+        Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.RibbonControl1)
         Me.Name = "Form_Main"
         Me.Text = "Tính toán cấu kiện dầm"
         CType(Me.RibbonControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel1.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -224,7 +235,8 @@ Partial Class Form_Main
     Friend WithEvents RibbonPageGroup4 As DevExpress.XtraBars.Ribbon.RibbonPageGroup
     Friend WithEvents BarButtonItem10 As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents RibbonPageGroup5 As DevExpress.XtraBars.Ribbon.RibbonPageGroup
-    Friend WithEvents panel_vatlieu As Panel
-    Friend WithEvents panel_main As Panel
     Friend WithEvents BarButtonItem2 As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents Panel1 As Panel
+    Friend WithEvents panel_main As Panel
+    Friend WithEvents panel_vatlieu As Panel
 End Class

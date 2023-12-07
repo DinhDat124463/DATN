@@ -1,4 +1,5 @@
 ﻿Public Class Cls_dam
+    Private m_TaiTrong As String
     Private m_tendam As String
     Private m_b As Double
     Private m_h As Double
@@ -57,6 +58,15 @@
         End Get
         Set(value As Double)
             m_Qmax = value
+        End Set
+    End Property
+
+    Public Property TaiTrong As String
+        Get
+            Return m_TaiTrong
+        End Get
+        Set(value As String)
+            m_TaiTrong = value
         End Set
     End Property
 End Class

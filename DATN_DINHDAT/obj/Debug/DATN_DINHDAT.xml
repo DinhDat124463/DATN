@@ -22,6 +22,11 @@ DATN_DINHDAT
   resource lookups using this strongly typed resource class.
 </summary>
 </member>
+<member name="P:DATN_DINHDAT.My.Resources.Resources.beam">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
 <member name="P:DATN_DINHDAT.My.Resources.Resources.ExportToWord">
 <summary>
   Looks up a localized resource of type System.Drawing.Bitmap.
@@ -48,6 +53,11 @@ DATN_DINHDAT
 </summary>
 </member>
 <member name="P:DATN_DINHDAT.My.Resources.Resources.Screenshot_2020_12_22_134144">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:DATN_DINHDAT.My.Resources.Resources.tải_xuống">
 <summary>
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>
