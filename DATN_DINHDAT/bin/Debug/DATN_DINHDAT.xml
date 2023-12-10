@@ -27,12 +27,27 @@ DATN_DINHDAT
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>
 </member>
+<member name="P:DATN_DINHDAT.My.Resources.Resources.DHXDHN">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
 <member name="P:DATN_DINHDAT.My.Resources.Resources.ExportToWord">
 <summary>
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>
 </member>
+<member name="P:DATN_DINHDAT.My.Resources.Resources.FIT">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
 <member name="P:DATN_DINHDAT.My.Resources.Resources.folder">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:DATN_DINHDAT.My.Resources.Resources.ic_as">
 <summary>
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>
@@ -52,12 +67,42 @@ DATN_DINHDAT
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>
 </member>
+<member name="P:DATN_DINHDAT.My.Resources.Resources.save_file_option1">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
 <member name="P:DATN_DINHDAT.My.Resources.Resources.Screenshot_2020_12_22_134144">
 <summary>
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>
 </member>
+<member name="P:DATN_DINHDAT.My.Resources.Resources.Search">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:DATN_DINHDAT.My.Resources.Resources.Steel">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:DATN_DINHDAT.My.Resources.Resources.Steel2">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:DATN_DINHDAT.My.Resources.Resources.Steel3">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
 <member name="P:DATN_DINHDAT.My.Resources.Resources.tải_xuống">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:DATN_DINHDAT.My.Resources.Resources.th2">
 <summary>
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>

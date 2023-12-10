@@ -191,6 +191,18 @@
     <Compile Include="Form\Form_Dulieudam.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\Form_Gioithieu.Designer.vb">
+      <DependentUpon>Form_Gioithieu.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Form_Gioithieu.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Form_bangtra.Designer.vb">
+      <DependentUpon>Form_bangtra.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Form_bangtra.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form_Main.Designer.vb">
       <DependentUpon>Form_Main.vb</DependentUpon>
     </Compile>
@@ -220,8 +232,14 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Form\Form_bangtra.resx">
+      <DependentUpon>Form_bangtra.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\Form_Dulieudam.resx">
       <DependentUpon>Form_Dulieudam.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Form_Gioithieu.resx">
+      <DependentUpon>Form_Gioithieu.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form_Main.resx">
       <DependentUpon>Form_Main.vb</DependentUpon>
@@ -276,6 +294,33 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\beam.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save-file-option1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ic_as.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DHXDHN.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FIT.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Steel.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Steel2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Steel3.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\th2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Search.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

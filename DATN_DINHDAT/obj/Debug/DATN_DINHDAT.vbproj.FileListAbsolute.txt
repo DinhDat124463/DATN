@@ -92,3 +92,5 @@ D:\Máy tính\Hoc\DATN\DATN_DINHDAT\obj\Debug\DATN_DINHDAT.exe
 D:\Máy tính\Hoc\DATN\DATN_DINHDAT\obj\Debug\DATN_DINHDAT.xml
 D:\Máy tính\Hoc\DATN\DATN_DINHDAT\obj\Debug\DATN_DINHDAT.pdb
 D:\Máy tính\Hoc\DATN\DATN_DINHDAT\obj\Debug\DATN_DINHDAT.Form_Dulieudam.resources
+D:\Máy tính\Hoc\DATN\DATN_DINHDAT\obj\Debug\DATN_DINHDAT.Form_Gioithieu.resources
+D:\Máy tính\Hoc\DATN\DATN_DINHDAT\obj\Debug\DATN_DINHDAT.Form_bangtra.resources
