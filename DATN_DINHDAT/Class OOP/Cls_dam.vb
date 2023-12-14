@@ -1,10 +1,11 @@
 ﻿Public Class Cls_dam
-    Private m_TaiTrong As String
     Private m_tendam As String
     Private m_b As Double
     Private m_h As Double
     Private m_l As Double
+    Private m_Mmin_T As Double
     Private m_Mmax As Double
+    Private m_Mmin_P As Double
     Private m_Qmax As Double
 
     Public Property Tendam As String
@@ -61,12 +62,22 @@
         End Set
     End Property
 
-    Public Property TaiTrong As String
+
+    Public Property Mmin_T As Double
         Get
-            Return m_TaiTrong
+            Return m_Mmin_T
         End Get
-        Set(value As String)
-            m_TaiTrong = value
+        Set(value As Double)
+            m_Mmin_T = value
+        End Set
+    End Property
+
+    Public Property Mmin_P As Double
+        Get
+            Return m_Mmin_P
+        End Get
+        Set(value As Double)
+            m_Mmin_P = value
         End Set
     End Property
 End Class

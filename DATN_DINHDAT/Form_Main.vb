@@ -3,8 +3,20 @@ Imports System.IO
 Imports DevExpress.Utils.Html.Internal
 
 Public Class Form_Main
+    Private noiluc_tinhthep As DataTable
+    Private betong1 As String
+    Private Noiluc1 As DataTable
+    Private Length As DataTable
+    Private Tietdien_Dam As DataTable
+    Private danhsach_tang As List(Of String)
     Private Sub BarButtonItem8_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BarButtonItem8.ItemClick
-
+        Dim tinhthep As New Form_Tinhthep()
+        panel_main.Controls.Clear()
+        tinhthep.TopLevel = False
+        tinhthep.Dock = DockStyle.Fill
+        panel_main.Controls.Add(tinhthep)
+        tinhthep.dgv_tinhthep.DataSource = TinhToan(noiluc_tinhthep, Tietdien_Dam)
+        tinhthep.Show()
     End Sub
 
     Private Sub BarButtonItem9_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BarButtonItem9.ItemClick
@@ -27,11 +39,7 @@ Public Class Form_Main
         'Panel1.Controls.Add(Gioithieu)
         'Gioithieu.Show()
     End Sub
-    Private betong1 As String
-    Private Noiluc1 As DataTable
-    Private Length As DataTable
-    Private Tietdien_Dam As DataTable
-    Private list_tang As List(Of String)
+
     ' Mở file Access
     Private Sub BarButtonItem4_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BarButtonItem4.ItemClick
         Me.WindowState = FormWindowState.Maximized
@@ -44,6 +52,25 @@ Public Class Form_Main
             Dim filePath As String = openFileDialog.FileName
             SavePathToFile(filePath)
             congtrinh = New Cls_congtrinh
+            Dim danhSachTang As List(Of Cls_tang) = List_tang(filePath, "Story", "Centers Of Mass And Rigidity")
+
+            ' Thêm toàn bộ danh sách vào Danhsachtang của đối tượng congtrinh
+            congtrinh.Danhsachtang.AddRange(danhSachTang)
+            Tietdien_Dam = Read_Access(filePath)
+            For Each tang As Cls_tang In congtrinh.Danhsachtang
+                For Each row As DataRow In Tietdien_Dam.Rows
+                    Dim tenDam As String = row("Tên dầm").ToString()
+                    Dim chieudaidam As String = row("Chiều dài dầm").ToString()
+                    Dim berong As String = row("Bề rộng").ToString()
+                    Dim chieucao As String = row("Chiều cao").ToString()
+                    Dim dam As New Cls_dam()
+                    dam.Tendam = tenDam
+                    dam.B = berong
+                    dam.L = chieudaidam
+                    dam.H = chieucao
+                    tang.Danhsach_Dam.Add(dam)
+                Next
+            Next
 
             Dim unit1 As String = Unit(filePath)
             Dim commaIndex As Integer = unit1.IndexOf(",")
@@ -52,9 +79,9 @@ Public Class Form_Main
             Dim secondCommaIndex As Integer = unit1.IndexOf(",", firstCommaIndex + 1)
             lb_chieudai.Text = "Đơn vị chiều dài: " & unit1.Substring(firstCommaIndex + 1, secondCommaIndex - firstCommaIndex - 1)
 
-            Tietdien_Dam = Read_Access(filePath)
+
             '' lấy tên các tầng 
-            list_tang = List(filePath, "Unique Name", "Beam Object Connectivity")
+            danhsach_tang = List(filePath, "Unique Name", "Beam Object Connectivity")
             ' Nội lực dầm 
             Noiluc1 = Noiluc(filePath)
             Length = Loc_Noiluc(filePath)
@@ -79,7 +106,6 @@ Public Class Form_Main
             tietdien.Show()
             tietdien.dgv_tietdien.DataSource = Tietdien_Dam
             tietdien.dgv_noiluc.DataSource = Noiluc1
-            lb_tongdong.Text = Noiluc1.Rows.Count
             ' Vật liệu
             Dim Vatlieu As New Form_VatLieu()
             panel_vatlieu.Controls.Clear()
@@ -120,8 +146,8 @@ Public Class Form_Main
         tohop.TopLevel = False
         tohop.Dock = DockStyle.Fill
         panel_main.Controls.Add(tohop)
-
-        tohop.dgv_tohopnoiluc.DataSource = Tohopnoiluc(Noiluc1, list_tang)
+        noiluc_tinhthep = Tohopnoiluc(Noiluc1, danhsach_tang)
+        tohop.dgv_tohopnoiluc.DataSource = noiluc_tinhthep
         tohop.Show()
     End Sub
 

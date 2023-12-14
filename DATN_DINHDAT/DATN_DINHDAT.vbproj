@@ -203,6 +203,18 @@
     <Compile Include="Form\Form_bangtra.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\Form_Tinhthep.Designer.vb">
+      <DependentUpon>Form_Tinhthep.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Form_Tinhthep.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_Banve.Designer.vb">
+      <DependentUpon>Form_Banve.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form_Banve.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form_Main.Designer.vb">
       <DependentUpon>Form_Main.vb</DependentUpon>
     </Compile>
@@ -247,8 +259,14 @@
     <EmbeddedResource Include="Form\Form_Gioithieu.resx">
       <DependentUpon>Form_Gioithieu.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\Form_Tinhthep.resx">
+      <DependentUpon>Form_Tinhthep.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\Form_Tohopnoiluc.resx">
       <DependentUpon>Form_Tohopnoiluc.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_Banve.resx">
+      <DependentUpon>Form_Banve.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form_Main.resx">
       <DependentUpon>Form_Main.vb</DependentUpon>

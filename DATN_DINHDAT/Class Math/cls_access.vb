@@ -160,6 +160,24 @@ Module cls_access
         ' Trả về DataTable chứa kết quả truy vấn
         Return result
     End Function
+    Public Function List_tang(path As String, column As String, table As String) As List(Of Cls_tang)
+        Dim result As New List(Of Cls_tang)
+        Dim connectionString As String = $"Provider=Microsoft.Jet.OLEDB.4.0;Data Source={path};Persist Security Info=False;"
+        Using connection As New OleDbConnection(connectionString)
+            connection.Open()
+            Dim sqlQuery As String = $"SELECT [{column}] FROM [{table}]"
+            Using command As New OleDbCommand(sqlQuery, connection)
+                Using reader As OleDbDataReader = command.ExecuteReader()
+                    While reader.Read()
+                        Dim tang As New Cls_tang()
+                        tang.TenTang = reader($"{column}").ToString()
+                        result.Add(tang)
+                    End While
+                End Using
+            End Using
+        End Using
+        Return result
+    End Function
 
     Public Function List(path As String, column As String, table As String) As List(Of String)
         Dim result As New List(Of String)
