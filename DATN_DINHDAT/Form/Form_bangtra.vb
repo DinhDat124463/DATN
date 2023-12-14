@@ -1,13 +1,19 @@
 ﻿Imports System.IO
 
 Public Class Form_bangtra
-    Private TTGH1 As DataTable
-    Private TTGH2 As DataTable
-    Private Tietdienthep As DataTable
-    Private Khoangcach As DataTable
+    ' Public Capdoben As New DataTable
+    Public TTGH2 As New DataTable
+    Public Tietdienthep As New DataTable
+    Public Khoangcach As New DataTable
+
+    Public Capdoben As New DataTable
+
+    Public Sub New()
+        InitializeComponent()
+    End Sub
     Private Sub ListBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListBox1.SelectedIndexChanged
         If ListBox1.SelectedIndex = 0 Then
-            dgv_thuvien.DataSource = TTGH1
+            dgv_thuvien.DataSource = Capdoben
         ElseIf ListBox1.SelectedIndex = 1 Then
             dgv_thuvien.DataSource = TTGH2
         ElseIf ListBox1.SelectedIndex = 2 Then
@@ -19,14 +25,15 @@ Public Class Form_bangtra
 
     Private Sub Form_bangtra_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.CenterToScreen()
-        Dim path_TTGH1 As String = $"{Application.StartupPath}\Template\TTGH1.txt"
+        Dim path_Capdoben As String = $"{Application.StartupPath}\Template\TTGH1.txt"
         Dim path_TTGH2 As String = $"{Application.StartupPath}\Template\TTGH2.txt"
         Dim path_tietdienthep As String = $"{Application.StartupPath}\Template\Tietdienthep.txt"
         Dim path_khoangcach As String = $"{Application.StartupPath}\Template\Khoangcach.txt"
-        TTGH1 = Read_txt(path_TTGH1)
+        Capdoben = Read_txt(path_Capdoben)
         TTGH2 = Read_txt(path_TTGH2)
         Tietdienthep = Read_txt(path_tietdienthep)
         Khoangcach = Read_txt(path_khoangcach)
+        dgv_thuvien.DataSource = Capdoben
     End Sub
     Private Function Read_txt(path As String) As DataTable
         If File.Exists(path) Then

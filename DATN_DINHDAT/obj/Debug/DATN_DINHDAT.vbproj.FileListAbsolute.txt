@@ -81,6 +81,9 @@ D:\Máy tính\Hoc\DATN\DATN_DINHDAT\bin\Debug\Bunifu.UI.WinForms.BunifuTransitio
 D:\Máy tính\Hoc\DATN\DATN_DINHDAT\bin\Debug\Bunifu.UI.WinForms.BunifuUserControl.xml
 D:\Máy tính\Hoc\DATN\DATN_DINHDAT\obj\Debug\DATN_DINHDAT.vbproj.AssemblyReference.cache
 D:\Máy tính\Hoc\DATN\DATN_DINHDAT\obj\Debug\DATN_DINHDAT.vbproj.SuggestedBindingRedirects.cache
+D:\Máy tính\Hoc\DATN\DATN_DINHDAT\obj\Debug\DATN_DINHDAT.Form_bangtra.resources
+D:\Máy tính\Hoc\DATN\DATN_DINHDAT\obj\Debug\DATN_DINHDAT.Form_Dulieudam.resources
+D:\Máy tính\Hoc\DATN\DATN_DINHDAT\obj\Debug\DATN_DINHDAT.Form_Gioithieu.resources
 D:\Máy tính\Hoc\DATN\DATN_DINHDAT\obj\Debug\DATN_DINHDAT.Form_Main.resources
 D:\Máy tính\Hoc\DATN\DATN_DINHDAT\obj\Debug\DATN_DINHDAT.Form_VatLieu.resources
 D:\Máy tính\Hoc\DATN\DATN_DINHDAT\obj\Debug\DATN_DINHDAT.Resources.resources
@@ -91,6 +94,3 @@ D:\Máy tính\Hoc\DATN\DATN_DINHDAT\obj\Debug\DATN_DINHDAT.vbproj.CopyComplete
 D:\Máy tính\Hoc\DATN\DATN_DINHDAT\obj\Debug\DATN_DINHDAT.exe
 D:\Máy tính\Hoc\DATN\DATN_DINHDAT\obj\Debug\DATN_DINHDAT.xml
 D:\Máy tính\Hoc\DATN\DATN_DINHDAT\obj\Debug\DATN_DINHDAT.pdb
-D:\Máy tính\Hoc\DATN\DATN_DINHDAT\obj\Debug\DATN_DINHDAT.Form_Dulieudam.resources
-D:\Máy tính\Hoc\DATN\DATN_DINHDAT\obj\Debug\DATN_DINHDAT.Form_Gioithieu.resources
-D:\Máy tính\Hoc\DATN\DATN_DINHDAT\obj\Debug\DATN_DINHDAT.Form_bangtra.resources

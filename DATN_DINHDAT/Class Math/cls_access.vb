@@ -3,90 +3,10 @@ Imports System.Data
 Imports DevExpress.Xpo.DB.Helpers
 Imports DevExpress.XtraEditors
 Imports System.Windows.Forms.VisualStyles.VisualStyleElement.ProgressBar
+Imports System.Text
 
 Module cls_access
-    Public Function Access(path As String, table_name As String, column_name As String) As List(Of String)
-        Dim result As New List(Of String)
-
-        Dim connectionString As String = $"Provider=Microsoft.Jet.OLEDB.4.0;Data Source={path};Persist Security Info=False;"
-
-        ' Modify the query to select specific columns based on user input
-        Dim query As String = $"SELECT [{column_name}] FROM [{table_name}]"
-
-        Using connection As New OleDbConnection(connectionString)
-            connection.Open()
-
-            Using command As New OleDbCommand(query, connection)
-                Using reader As OleDbDataReader = command.ExecuteReader()
-                    While reader.Read()
-                        If Not reader.IsDBNull(0) Then
-                            Dim value As Object = reader.GetValue(0)
-
-                            If TypeOf value Is String Then
-                                ' Ép kiểu nếu kiểu là String
-                                result.Add(DirectCast(value, String))
-                            ElseIf TypeOf value Is Double Then
-                                ' Ép kiểu nếu kiểu là Double
-                                result.Add(DirectCast(value, Double).ToString())
-                            Else
-                                ' Xử lý kiểu dữ liệu khác nếu cần
-                                ' Nếu kiểu dữ liệu không khớp với String hoặc Double, bạn có thể thêm xử lý ở đây
-                            End If
-                        Else
-                            ' Xử lý giá trị null nếu cần
-                            result.Add("Value is null")
-                        End If
-                    End While
-
-                End Using
-            End Using
-        End Using
-
-        Return result
-    End Function
-    Public Function Access_Tang(path As String) As List(Of Cls_congtrinh)
-        Dim Tang As New List(Of Cls_congtrinh)
-
-        ' Lấy giá trị từ cơ sở dữ liệu - Giả sử hàm Access trả về một danh sách các giá trị từ cột "Story"
-        Dim tenTangList As List(Of String) = Access(path, "Centers Of Mass And Rigidity", "Story")
-
-        ' Duyệt qua danh sách các tên tầng và thêm chúng vào đối tượng Cls_congtrinh
-        For Each tenTang As String In tenTangList
-            Dim _Tang = New Cls_congtrinh() ' Tạo mới một đối tượng _Tang cho mỗi tầng
-            Dim tangItem As New Cls_tang()
-            tangItem.TenTang = tenTang
-            _Tang.Danhsachtang.Add(tangItem)
-            congtrinh.Danhsachtang.Add(tangItem)
-        Next
-        Return Tang
-    End Function
-    Public Function Access_Dam(path As String) As List(Of Cls_dam)
-        Dim Dam As New List(Of Cls_dam)
-
-        'Tên dầm
-        Dim TenDam_List As List(Of String) = Access(path, "Element Forces - Beams", "Unique Name")
-        Dim Taitrong_list As List(Of String) = Access(path, "Element Forces - Beams", "Output Case")
-        Dim Q_list As List(Of String) = Access(path, "Element Forces - Beams", "V2")
-        Dim Mmax_list As List(Of String) = Access(path, "Element Forces - Beams", "M3")
-        For i = 0 To Taitrong_list.Count - 1
-            Dim DamItem = New Cls_dam()
-
-            ' Tên dầm
-            DamItem.Tendam = TenDam_List(i)
-
-            ' Tải trọng
-            DamItem.TaiTrong = Taitrong_list(i)
-
-            ' Lực cắt
-            DamItem.Qmax = Q_list(i)
-
-            DamItem.Mmax = Mmax_list(i)
-
-            Dam.Add(DamItem)
-        Next
-
-        Return Dam
-    End Function
+    ' Đọc thông số dầm
     Public Function Read_Access(path As String) As DataTable
         Dim connectionString As String = $"Provider=Microsoft.Jet.OLEDB.4.0;Data Source={path};Persist Security Info=False;"
         Dim data As New DataTable
@@ -143,6 +63,7 @@ Module cls_access
         data.Columns.Remove("Design Section")
         Return data
     End Function
+    ' Đọc đơn vị xuất từ etap ra 
     Public Function Unit(path As String) As String
         Dim result As String = String.Empty
         Dim connectionString As String = $"Provider=Microsoft.Jet.OLEDB.4.0;Data Source={path};Persist Security Info=False;"
@@ -166,28 +87,98 @@ Module cls_access
         ' Trả về giá trị của biến result
         Return result
     End Function
-    Private Function Value_Max(tang As String, hoatTai As String) As Double
-        Dim connectionString As String = "Your Connection String"
-        Dim query As String = $"SELECT MAX(Column12) AS MaxValue " &
-                              $"FROM YourTableName " &
-                              $"WHERE Column1 = '{tang}' " &
-                              $"AND Column4 = '{hoatTai}' " &
-                              "AND Column6 IS NOT NULL " &
-                              "AND Column6 > 0;"
+    Public Function Betong(path As String) As String
+        Dim result As New StringBuilder()
+        Dim connectionString As String = $"Provider=Microsoft.Jet.OLEDB.4.0;Data Source={path};Persist Security Info=False;"
 
         Using connection As New OleDbConnection(connectionString)
             connection.Open()
 
-            Using command As New OleDbCommand(query, connection)
+            Dim sqlQuery As String = "SELECT [Material] FROM [Material List by Object Type] WHERE [Object Type] = 'beam'"
+
+            Using command As New OleDbCommand(sqlQuery, connection)
                 Using reader As OleDbDataReader = command.ExecuteReader()
-                    If reader.Read() Then
-                        Return If(reader("MaxValue") IsNot DBNull.Value, Convert.ToDouble(reader("MaxValue")), 0)
-                    Else
-                        MessageBox.Show("No data found.")
-                        Return 0
-                    End If
+                    While reader.Read()
+                        result.Append(reader("Material").ToString()).Append(",")
+                    End While
                 End Using
             End Using
         End Using
+
+        ' Remove the trailing comma if there are values
+        If result.Length > 0 Then
+            result.Length -= 1
+        End If
+
+        Return result.ToString()
     End Function
+
+
+    Public Function Noiluc(path As String) As DataTable
+        Dim result As New DataTable()
+        Dim connectionString As String = $"Provider=Microsoft.Jet.OLEDB.4.0;Data Source={path};Persist Security Info=False;"
+
+        Using connection As New OleDbConnection(connectionString)
+            connection.Open()
+
+            Dim sqlQuery As String = "SELECT [Story],[Unique Name],[Output Case],[Station],[V2],[M3] FROM [Element Forces - Beams]"
+
+            Using command As New OleDbCommand(sqlQuery, connection)
+                Using adapter As New OleDbDataAdapter(command)
+                    adapter.Fill(result)
+                End Using
+            End Using
+        End Using
+        Return result
+    End Function
+    Public Function Loc_Noiluc(path As String) As DataTable
+        ' Tạo DataTable để lưu trữ kết quả truy vấn
+        Dim result As New DataTable()
+
+        ' Chuỗi kết nối đến tệp cơ sở dữ liệu Jet (Access)
+        Dim connectionString As String = $"Provider=Microsoft.Jet.OLEDB.4.0;Data Source={path};Persist Security Info=False;"
+
+        ' Mở kết nối đến cơ sở dữ liệu
+        Using connection As New OleDbConnection(connectionString)
+            connection.Open()
+
+            ' Câu truy vấn SQL để lấy thông tin từ các bảng
+            Dim sqlQuery As String = "SELECT [Beam Object Connectivity].[Unique Name] AS ConnectivityName, [Beam Object Connectivity].Length, [Element Forces - Beams].[Unique Name] AS BeamName " &
+                         "FROM [Beam Object Connectivity] INNER JOIN [Element Forces - Beams] ON [Beam Object Connectivity].[Unique Name] = [Element Forces - Beams].[Unique Name];"
+
+            ' Tạo đối tượng OleDbCommand để thực hiện câu truy vấn
+            Using command As New OleDbCommand(sqlQuery, connection)
+                ' Sử dụng OleDbDataAdapter để điền kết quả vào DataTable
+                Using adapter As New OleDbDataAdapter(command)
+                    adapter.Fill(result)
+                End Using
+            End Using
+        End Using
+
+        ' Trả về DataTable chứa kết quả truy vấn
+        Return result
+    End Function
+
+    Public Function List(path As String, column As String, table As String) As List(Of String)
+        Dim result As New List(Of String)
+        Dim connectionString As String = $"Provider=Microsoft.Jet.OLEDB.4.0;Data Source={path};Persist Security Info=False;"
+
+        Using connection As New OleDbConnection(connectionString)
+            connection.Open()
+
+            Dim sqlQuery As String = $"SELECT [{column}] FROM [{table}]"
+
+            Using command As New OleDbCommand(sqlQuery, connection)
+                Using reader As OleDbDataReader = command.ExecuteReader()
+                    While reader.Read()
+                        ' Assuming "Output Case" is a string; adjust type if needed
+                        result.Add(reader(column).ToString())
+                    End While
+                End Using
+            End Using
+        End Using
+
+        Return result
+    End Function
+
 End Module

@@ -45,6 +45,7 @@ Partial Class Form_Main
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.lb_taitrong = New System.Windows.Forms.Label()
         Me.lb_chieudai = New System.Windows.Forms.Label()
+        Me.lb_tongdong = New System.Windows.Forms.Label()
         CType(Me.RibbonControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
@@ -227,6 +228,7 @@ Partial Class Form_Main
         'Panel2
         '
         Me.Panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel2.Controls.Add(Me.lb_tongdong)
         Me.Panel2.Controls.Add(Me.lb_taitrong)
         Me.Panel2.Controls.Add(Me.lb_chieudai)
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Bottom
@@ -254,6 +256,16 @@ Partial Class Form_Main
         Me.lb_chieudai.Size = New System.Drawing.Size(103, 16)
         Me.lb_chieudai.TabIndex = 1
         Me.lb_chieudai.Text = "Đơn vị chiều dài:"
+        '
+        'lb_tongdong
+        '
+        Me.lb_tongdong.Anchor = System.Windows.Forms.AnchorStyles.Right
+        Me.lb_tongdong.AutoSize = True
+        Me.lb_tongdong.Location = New System.Drawing.Point(664, 17)
+        Me.lb_tongdong.Name = "lb_tongdong"
+        Me.lb_tongdong.Size = New System.Drawing.Size(100, 16)
+        Me.lb_tongdong.TabIndex = 2
+        Me.lb_tongdong.Text = "Đơn vị tải trọng:"
         '
         'Form_Main
         '
@@ -300,4 +312,5 @@ Partial Class Form_Main
     Friend WithEvents lb_chieudai As Label
     Friend WithEvents RibbonPageGroup2 As DevExpress.XtraBars.Ribbon.RibbonPageGroup
     Friend WithEvents BarButtonItem6 As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents lb_tongdong As Label
 End Class
