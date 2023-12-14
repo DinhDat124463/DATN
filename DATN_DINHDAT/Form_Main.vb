@@ -31,6 +31,7 @@ Public Class Form_Main
     Private Noiluc1 As DataTable
     Private Length As DataTable
     Private Tietdien_Dam As DataTable
+    Private list_tang As List(Of String)
     ' Mở file Access
     Private Sub BarButtonItem4_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BarButtonItem4.ItemClick
         Me.WindowState = FormWindowState.Maximized
@@ -52,8 +53,8 @@ Public Class Form_Main
             lb_chieudai.Text = "Đơn vị chiều dài: " & unit1.Substring(firstCommaIndex + 1, secondCommaIndex - firstCommaIndex - 1)
 
             Tietdien_Dam = Read_Access(filePath)
-
-
+            '' lấy tên các tầng 
+            list_tang = List(filePath, "Unique Name", "Beam Object Connectivity")
             ' Nội lực dầm 
             Noiluc1 = Noiluc(filePath)
             Length = Loc_Noiluc(filePath)
@@ -86,7 +87,6 @@ Public Class Form_Main
             Vatlieu.Dock = DockStyle.Bottom
             panel_vatlieu.Controls.Add(Vatlieu)
             Vatlieu.Show()
-
         End If
     End Sub
 
@@ -113,11 +113,21 @@ Public Class Form_Main
     End Sub
 
     Private Sub btn_tohop_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btn_tohop.ItemClick
+        ' Tiết diện dầm
 
+        Dim tohop As New Form_Tohopnoiluc()
+        panel_main.Controls.Clear()
+        tohop.TopLevel = False
+        tohop.Dock = DockStyle.Fill
+        panel_main.Controls.Add(tohop)
+
+        tohop.dgv_tohopnoiluc.DataSource = Tohopnoiluc(Noiluc1, list_tang)
+        tohop.Show()
     End Sub
 
     Private Sub btn_noiluc_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles btn_noiluc.ItemClick
         ' Tiết diện dầm
+
         Dim tietdien As New Form_Dulieudam()
         panel_main.Controls.Clear()
         tietdien.TopLevel = False

@@ -94,3 +94,4 @@ D:\Máy tính\Hoc\DATN\DATN_DINHDAT\obj\Debug\DATN_DINHDAT.vbproj.CopyComplete
 D:\Máy tính\Hoc\DATN\DATN_DINHDAT\obj\Debug\DATN_DINHDAT.exe
 D:\Máy tính\Hoc\DATN\DATN_DINHDAT\obj\Debug\DATN_DINHDAT.xml
 D:\Máy tính\Hoc\DATN\DATN_DINHDAT\obj\Debug\DATN_DINHDAT.pdb
+D:\Máy tính\Hoc\DATN\DATN_DINHDAT\obj\Debug\DATN_DINHDAT.Form_Tohopnoiluc.resources

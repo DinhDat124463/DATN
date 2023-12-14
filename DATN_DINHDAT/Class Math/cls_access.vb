@@ -4,6 +4,7 @@ Imports DevExpress.Xpo.DB.Helpers
 Imports DevExpress.XtraEditors
 Imports System.Windows.Forms.VisualStyles.VisualStyleElement.ProgressBar
 Imports System.Text
+Imports DevExpress.Internal.WinApi.Windows.UI.Notifications
 
 Module cls_access
     ' Đọc thông số dầm
@@ -61,6 +62,7 @@ Module cls_access
         End Using
         data.Columns.Remove("Design Type")
         data.Columns.Remove("Design Section")
+
         Return data
     End Function
     ' Đọc đơn vị xuất từ etap ra 

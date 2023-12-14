@@ -215,6 +215,12 @@
     <Compile Include="Form\Form_VatLieu.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form\Form_Tohopnoiluc.Designer.vb">
+      <DependentUpon>Form_Tohopnoiluc.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Form_Tohopnoiluc.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -240,6 +246,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Form_Gioithieu.resx">
       <DependentUpon>Form_Gioithieu.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Form_Tohopnoiluc.resx">
+      <DependentUpon>Form_Tohopnoiluc.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form_Main.resx">
       <DependentUpon>Form_Main.vb</DependentUpon>

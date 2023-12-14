@@ -8,6 +8,7 @@ Public Class Form_VatLieu
         If selectedCapdobenIndex >= 0 AndAlso selectedCapdobenIndex < capdobenTable.Columns.Count - 1 Then
             txt_Rb.Text = capdobenTable.Rows(0)(selectedCapdobenIndex + 1).ToString()
             txt_rbt.Text = capdobenTable.Rows(1)(selectedCapdobenIndex + 1).ToString()
+            txt_Eb.Text = 200000
         End If
 
     End Sub
@@ -31,6 +32,7 @@ Public Class Form_VatLieu
         If selectedCapdobenIndex >= 0 Then
             txt_Rb.Text = capdobenTable.Rows(0)(selectedCapdobenIndex + 1).ToString()
             txt_rbt.Text = capdobenTable.Rows(1)(selectedCapdobenIndex + 1).ToString()
+            txt_Eb.Text = 200000
         End If
 
 
