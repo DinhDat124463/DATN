@@ -209,10 +209,10 @@
     <Compile Include="Form\Form_Tinhthep.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form_Banve.Designer.vb">
+    <Compile Include="Form\Form_Banve.Designer.vb">
       <DependentUpon>Form_Banve.vb</DependentUpon>
     </Compile>
-    <Compile Include="Form_Banve.vb">
+    <Compile Include="Form\Form_Banve.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form_Main.Designer.vb">
@@ -265,7 +265,7 @@
     <EmbeddedResource Include="Form\Form_Tohopnoiluc.resx">
       <DependentUpon>Form_Tohopnoiluc.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form_Banve.resx">
+    <EmbeddedResource Include="Form\Form_Banve.resx">
       <DependentUpon>Form_Banve.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form_Main.resx">
@@ -348,6 +348,51 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="AxVDProLib5">
+      <Guid>{68C2910D-885A-4B9D-BA07-ABFE0563A8E9}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>1</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>aximp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+    <COMReference Include="AxVDStdLib5">
+      <Guid>{CF8CE0FC-B461-4F49-9B07-95CF36579963}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>1</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>aximp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+    <COMReference Include="stdole">
+      <Guid>{00020430-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VDProLib5">
+      <Guid>{68C2910D-885A-4B9D-BA07-ABFE0563A8E9}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>1</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VDStdLib5">
+      <Guid>{CF8CE0FC-B461-4F49-9B07-95CF36579963}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>1</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

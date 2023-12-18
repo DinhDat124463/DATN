@@ -97,3 +97,12 @@ D:\Máy tính\Hoc\DATN\DATN_DINHDAT\obj\Debug\DATN_DINHDAT.pdb
 D:\Máy tính\Hoc\DATN\DATN_DINHDAT\obj\Debug\DATN_DINHDAT.Form_Tohopnoiluc.resources
 D:\Máy tính\Hoc\DATN\DATN_DINHDAT\obj\Debug\DATN_DINHDAT.Form_Tinhthep.resources
 D:\Máy tính\Hoc\DATN\DATN_DINHDAT\obj\Debug\DATN_DINHDAT.Form_Banve.resources
+D:\Máy tính\Hoc\DATN\DATN_DINHDAT\bin\Debug\Interop.VDProLib5.dll
+D:\Máy tính\Hoc\DATN\DATN_DINHDAT\bin\Debug\Interop.VDStdLib5.dll
+D:\Máy tính\Hoc\DATN\DATN_DINHDAT\bin\Debug\AxInterop.VDProLib5.dll
+D:\Máy tính\Hoc\DATN\DATN_DINHDAT\bin\Debug\AxInterop.VDStdLib5.dll
+D:\Máy tính\Hoc\DATN\DATN_DINHDAT\obj\Debug\Interop.VDProLib5.dll
+D:\Máy tính\Hoc\DATN\DATN_DINHDAT\obj\Debug\Interop.VDStdLib5.dll
+D:\Máy tính\Hoc\DATN\DATN_DINHDAT\obj\Debug\AxInterop.VDProLib5.dll
+D:\Máy tính\Hoc\DATN\DATN_DINHDAT\obj\Debug\AxInterop.VDStdLib5.dll
+D:\Máy tính\Hoc\DATN\DATN_DINHDAT\obj\Debug\DATN_DINHDAT.vbproj.ResolveComReference.cache

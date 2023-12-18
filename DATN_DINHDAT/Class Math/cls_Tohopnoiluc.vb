@@ -3,6 +3,7 @@
         ' Create a new DataTable with the same structure as the input DataTable
         Dim result As New DataTable()
         result = data.Clone()
+
         Dim Mmin_T As String
         ' Iterate through the list of strings (list_tang)
         For i = 0 To list_tang.Count - 1
@@ -14,8 +15,8 @@
             Dim minM3Value As Double = 0
             Dim correspondingRow As DataRow = Nothing
             For Each row As DataRow In data.Rows
-                If row("Unique Name").ToString().Contains(list_tang(i)) Then
-                    Dim stationValue As Double = CDbl(row("Station"))
+                If row("Tên dầm").ToString().Contains(list_tang(i)) Then
+                    Dim stationValue As Double = CDbl(row("Vị trí"))
                     Dim m3Value As Double = CDbl(row("M3"))
                     If stationValue < min1 Then
                         min2 = min1
@@ -45,7 +46,7 @@
             Dim maxPositiveValue As Double = Double.MinValue
             Dim newRow As DataRow = Nothing
             For Each row As DataRow In data.Rows
-                If row("Unique Name").ToString().Contains(list_tang(i)) Then
+                If row("Tên dầm").ToString().Contains(list_tang(i)) Then
                     Dim currentValue As Double = Convert.ToDouble(row("M3"))
                     If currentValue > 0 AndAlso currentValue > maxPositiveValue Then
                         maxPositiveValue = currentValue
@@ -66,8 +67,8 @@
             Dim maxM3Value As Double = 0
             Dim correspondingRowMax As DataRow = Nothing
             For Each row As DataRow In data.Rows
-                If row("Unique Name").ToString().Contains(list_tang(i)) Then
-                    Dim stationValue As Double = CDbl(row("Station"))
+                If row("Tên dầm").ToString().Contains(list_tang(i)) Then
+                    Dim stationValue As Double = CDbl(row("Vị trí"))
                     Dim m3Value As Double = CDbl(row("M3"))
                     If stationValue > max1 Then
                         max2 = max1

@@ -1,4 +1,5 @@
-﻿Module Cls_tinhtoan
+﻿Imports System.IO
+Module Cls_tinhtoan
     Dim μ As Double
     Dim M As Double
     Dim b As Double
@@ -24,25 +25,26 @@
         dientichthep.Columns.Add("Tiết diện đi qua", GetType(String))
         dientichthep.Columns.Add("Astt", GetType(Double))
         dientichthep.Columns.Add("μ(%)", GetType(String))
-
+        Dim filePath As String = $"{Application.StartupPath}\Template\Vatlieu.txt"
         For Each row As DataRow In datanoiluc.Rows
             For Each tietdien As DataRow In datatietdien.Rows
-                If row("Unique Name").ToString().Contains(tietdien("Tên dầm").ToString()) Then
-                    ' Assuming you want to add a new row for each match
+                If row("Tên dầm").ToString().Contains(tietdien("Tên dầm").ToString()) Then
                     Dim newRow As DataRow = dientichthep.NewRow()
-
-                    ' Set values for each column in the new row
-                    newRow("Tầng") = row("Story").ToString()
-                    newRow("Tên dầm") = row("Unique Name").ToString()
-                    newRow("Vị trí") = Convert.ToDouble(row("Station").ToString())
+                    newRow("Tầng") = row("Tầng").ToString()
+                    newRow("Tên dầm") = row("Tên dầm").ToString()
+                    newRow("Vị trí") = Convert.ToDouble(row("Vị trí").ToString())
                     newRow("V2") = Math.Round(Convert.ToDouble(row("V2").ToString()), 3)
                     newRow("M3") = Math.Round(Convert.ToDouble(row("M3").ToString()), 3)
                     a = 3
                     ' a = 0.1 * Convert.ToDouble(tietdien("Chiều cao")) * 100
                     h = Convert.ToDouble(tietdien("Chiều cao")) * 100
-                    h0 = (h - a) * 100
-                    Rb = 17
-                    Rs = 350
+                    h0 = (h - a)
+                    ' Mở tệp để đọc
+                    Using reader As New StreamReader(filePath)
+                        Rb = ReadSpecificLine(reader, 3)
+                        Rs = ReadSpecificLine(reader, -3 + 8)
+                    End Using
+
                     b = Convert.ToDouble(tietdien("Bề rộng")) * 100
                     hf = 140
                     If Convert.ToDouble(row("M3")) < 0 Then
@@ -55,29 +57,16 @@
                         newRow("μ(%)") = Math.Round(μ, 3) & "%"
                     Else
                         bf = b + 2 * DoVuonCanh()
-
-                        'If M < Mf(Rb, bf, hf, h0) Then
-                        '    M = row("M3") * 1000
-                        '    KieuTietDienTinhToan = "Tiết diện chữ nhật"
-                        '    ViTriTrucTrungHoa = "Đi qua cánh"
-                        '    [As] = DienTichThepTietDienChuNhat(bf)
-                        '    μ = ([As] / (b * h0)) * 100
-                        '    newRow("Tiết diện đi qua") = KieuTietDienTinhToan
-                        '    newRow("Astt") = [As]
-                        '    newRow("μ(%)") = Math.Round(μ, 3) & "%"
-                        'Else
                         M = row("M3") * 1000
-                            KieuTietDienTinhToan = "Tiết diện chữ T"
-                            ViTriTrucTrungHoa = "Đi qua sườn"
-                            [As] = DienTichThepTietDienChuT()
-                            μ = ([As] / (b * h0)) * 100
-                            newRow("Tiết diện đi qua") = KieuTietDienTinhToan
-                            newRow("Astt") = [As]
-                            newRow("μ(%)") = Math.Round(μ, 3) & "%"
+                        KieuTietDienTinhToan = "Tiết diện chữ T"
+                        ViTriTrucTrungHoa = "Đi qua sườn"
+                        [As] = DienTichThepTietDienChuT()
+                        μ = ([As] / (b * h0)) * 100
+                        newRow("Tiết diện đi qua") = KieuTietDienTinhToan
+                        newRow("Astt") = [As]
+                        newRow("μ(%)") = Math.Round(μ, 3) & "%"
                         ' End If
                     End If
-
-                    ' Add the new row to the DataTable
                     dientichthep.Rows.Add(newRow)
                 End If
             Next
@@ -135,5 +124,15 @@
     End Function
     Public Function Mf(Rb As Double, bf As Double, hf As Double, h0 As Double) As Double
         Return Rb * bf * hf * (h0 - 0.5 * hf)
+    End Function
+    Function ReadSpecificLine(reader As StreamReader, lineNumber As Integer) As String
+        ' Duyệt qua từng dòng cho đến khi đến dòng cần đọc
+        For i As Integer = 1 To lineNumber - 1
+            If reader.ReadLine() Is Nothing Then
+                Return ""
+            End If
+        Next
+        ' Đọc dòng cần đọc
+        Return reader.ReadLine()
     End Function
 End Module

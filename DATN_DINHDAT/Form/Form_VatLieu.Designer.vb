@@ -20,7 +20,7 @@ Partial Class Form_VatLieu
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form_VatLieu))
-        Dim BorderEdges1 As Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges = New Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges()
+        Dim BorderEdges2 As Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges = New Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges()
         Me.Label17 = New System.Windows.Forms.Label()
         Me.txt_Rsw_thepngang = New System.Windows.Forms.TextBox()
         Me.Label18 = New System.Windows.Forms.Label()
@@ -411,11 +411,11 @@ Partial Class Form_VatLieu
         Me.btn_luuvatlieu.ColorContrastOnClick = 45
         Me.btn_luuvatlieu.ColorContrastOnHover = 45
         Me.btn_luuvatlieu.Cursor = System.Windows.Forms.Cursors.Default
-        BorderEdges1.BottomLeft = True
-        BorderEdges1.BottomRight = True
-        BorderEdges1.TopLeft = True
-        BorderEdges1.TopRight = True
-        Me.btn_luuvatlieu.CustomizableEdges = BorderEdges1
+        BorderEdges2.BottomLeft = True
+        BorderEdges2.BottomRight = True
+        BorderEdges2.TopLeft = True
+        BorderEdges2.TopRight = True
+        Me.btn_luuvatlieu.CustomizableEdges = BorderEdges2
         Me.btn_luuvatlieu.DialogResult = System.Windows.Forms.DialogResult.None
         Me.btn_luuvatlieu.DisabledBorderColor = System.Drawing.Color.FromArgb(CType(CType(191, Byte), Integer), CType(CType(191, Byte), Integer), CType(CType(191, Byte), Integer))
         Me.btn_luuvatlieu.DisabledFillColor = System.Drawing.Color.FromArgb(CType(CType(204, Byte), Integer), CType(CType(204, Byte), Integer), CType(CType(204, Byte), Integer))

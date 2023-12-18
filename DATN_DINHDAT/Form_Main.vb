@@ -1,9 +1,11 @@
 ﻿Imports System.Data.OleDb
 Imports System.IO
+Imports DevExpress.Internal.WinApi.Windows.UI.Notifications
 Imports DevExpress.Utils.Html.Internal
 
 Public Class Form_Main
-    Private noiluc_tinhthep As DataTable
+    Public noiluc_tinhthep As DataTable
+    Public chonthep As DataTable
     Private betong1 As String
     Private Noiluc1 As DataTable
     Private Length As DataTable
@@ -15,29 +17,29 @@ Public Class Form_Main
         tinhthep.TopLevel = False
         tinhthep.Dock = DockStyle.Fill
         panel_main.Controls.Add(tinhthep)
-        tinhthep.dgv_tinhthep.DataSource = TinhToan(noiluc_tinhthep, Tietdien_Dam)
+        chonthep = TinhToan(noiluc_tinhthep, Tietdien_Dam)
+        tinhthep.dgv_tinhthep.DataSource = chonthep
         tinhthep.Show()
     End Sub
-
     Private Sub BarButtonItem9_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BarButtonItem9.ItemClick
 
     End Sub
+    Public Capdoben As New DataTable
+    Public Macthep As New DataTable
+    Public Tietdienthep As New DataTable
+    Public Khoangcach As New DataTable
 
     Private Sub Form_Main_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.CenterToScreen()
-        ' Tạo và hiển thị form khác
-        Form_bangtra.Show()
-        'Me.WindowState = FormWindowState.Maximized
 
-        'panel_vatlieu.Hide()
-        'panel_main.Hide()
-        'Panel2.Hide()
-
-        'Dim Gioithieu As New Form_Gioithieu()
-        'Gioithieu.TopLevel = False
-        'Gioithieu.Dock = DockStyle.Fill
-        'Panel1.Controls.Add(Gioithieu)
-        'Gioithieu.Show()
+        Dim path_Capdoben As String = $"{Application.StartupPath}\Template\TTGH1.txt"
+        Dim path_macthep As String = $"{Application.StartupPath}\Template\Macthep.txt"
+        Dim path_tietdienthep As String = $"{Application.StartupPath}\Template\Tietdienthep.txt"
+        Dim path_khoangcach As String = $"{Application.StartupPath}\Template\Khoangcach.txt"
+        Capdoben = Read_txt(path_Capdoben)
+        Macthep = Read_txt(path_macthep)
+        Tietdienthep = Read_txt(path_tietdienthep)
+        Khoangcach = Read_txt(path_khoangcach)
     End Sub
 
     ' Mở file Access
@@ -88,11 +90,16 @@ Public Class Form_Main
             betong1 = Betong(filePath)
             ' Thêm cột "Length" vào DataTable Noiluc1
             Noiluc1.Columns.Add("Length", GetType(Double))
+            Noiluc1.Columns("Story").ColumnName = "Tầng"
+            Noiluc1.Columns("Unique Name").ColumnName = "Tên dầm"
+            Noiluc1.Columns("Output Case").ColumnName = "Loại tải"
+            Noiluc1.Columns("Station").ColumnName = "Vị trí"
+            Noiluc1.Columns("Length").ColumnName = "Chiều dài dầm"
             For Each row1 As DataRow In Noiluc1.Rows
                 For Each row2 As DataRow In Length.Rows
-                    If row1("Unique Name").ToString() = row2("BeamName").ToString() Then
+                    If row1("Tên dầm").ToString() = row2("BeamName").ToString() Then
                         ' Lấy giá trị từ cột "Length" của row2 và thêm vào cột "Length" của row1
-                        row1("Length") = row2("Length")
+                        row1("Chiều dài dầm") = row2("Length")
                     End If
                 Next
             Next
@@ -123,11 +130,6 @@ Public Class Form_Main
         ' Ghi đường dẫn vào tệp tin text
         File.WriteAllText(filePathTxt, filePath)
     End Sub
-
-    ' Hàm để trả về giá trị của biến betong1
-    Function LayGiaTriBetong() As String
-        Return betong1
-    End Function
 
 
     Private Sub BarButtonItem2_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BarButtonItem2.ItemClick
@@ -163,4 +165,8 @@ Public Class Form_Main
         tietdien.dgv_tietdien.DataSource = Tietdien_Dam
         tietdien.dgv_noiluc.DataSource = Noiluc1
     End Sub
+    ' Hàm để trả về giá trị của biến betong1
+    Function LayGiaTriBetong() As String
+        Return betong1
+    End Function
 End Class

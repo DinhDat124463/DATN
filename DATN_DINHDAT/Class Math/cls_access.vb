@@ -5,6 +5,7 @@ Imports DevExpress.XtraEditors
 Imports System.Windows.Forms.VisualStyles.VisualStyleElement.ProgressBar
 Imports System.Text
 Imports DevExpress.Internal.WinApi.Windows.UI.Notifications
+Imports System.IO
 
 Module cls_access
     ' Đọc thông số dầm
@@ -53,8 +54,8 @@ Module cls_access
                         ' Tìm hàng tương ứng trong DataTable và thêm dữ liệu mới
                         Dim hang_tuongung() As DataRow = data.Select($"[Design Section] = '{reader.GetString(0)}'")
                         For Each hang As DataRow In hang_tuongung
-                            hang("Bề rộng") = reader.GetDouble(1)
-                            hang("Chiều cao") = reader.GetDouble(2)
+                            hang("Bề rộng") = reader.GetDouble(2)
+                            hang("Chiều cao") = reader.GetDouble(1)
                         Next
                     End While
                 End Using
@@ -200,5 +201,30 @@ Module cls_access
 
         Return result
     End Function
-
+    Public Function Read_txt(path As String) As DataTable
+        If File.Exists(path) Then
+            Dim dataTable As New DataTable()
+            Using reader As New StreamReader(path)
+                If Not reader.EndOfStream Then
+                    Dim headerLine As String = reader.ReadLine()
+                    Dim columnNames As String() = headerLine.Split("@"c)
+                    For Each columnName As String In columnNames
+                        dataTable.Columns.Add(columnName, GetType(String))
+                    Next
+                    Do While Not reader.EndOfStream
+                        Dim line As String = reader.ReadLine()
+                        Dim values As String() = line.Split("@"c)
+                        Dim newRow As DataRow = dataTable.NewRow()
+                        For i As Integer = 0 To Math.Min(values.Length - 1, dataTable.Columns.Count - 1)
+                            newRow(i) = values(i)
+                        Next
+                        dataTable.Rows.Add(newRow)
+                    Loop
+                End If
+            End Using
+            Return dataTable
+        Else
+            Return Nothing
+        End If
+    End Function
 End Module
