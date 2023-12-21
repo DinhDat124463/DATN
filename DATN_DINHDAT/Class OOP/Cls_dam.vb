@@ -7,7 +7,9 @@
     Private m_Mmax As Double
     Private m_Mmin_P As Double
     Private m_Qmax As Double
-
+    Private _td1_st1, _td1_dk1, _td1_st2, _td1_dk2 As Double
+    Private _td2_st1, _td2_dk1, _td2_st2, _td2_dk2 As Double
+    Private _td3_st1, _td3_dk1, _td3_st2, _td3_dk2 As Double
     Public Property Tendam As String
         Get
             Return m_tendam
@@ -78,6 +80,114 @@
         End Get
         Set(value As Double)
             m_Mmin_P = value
+        End Set
+    End Property
+
+    Public Property Td1_st1 As Double
+        Get
+            Return _td1_st1
+        End Get
+        Set(value As Double)
+            _td1_st1 = value
+        End Set
+    End Property
+
+    Public Property Td1_dk1 As Double
+        Get
+            Return _td1_dk1
+        End Get
+        Set(value As Double)
+            _td1_dk1 = value
+        End Set
+    End Property
+
+    Public Property Td1_st2 As Double
+        Get
+            Return _td1_st2
+        End Get
+        Set(value As Double)
+            _td1_st2 = value
+        End Set
+    End Property
+
+    Public Property Td1_dk2 As Double
+        Get
+            Return _td1_dk2
+        End Get
+        Set(value As Double)
+            _td1_dk2 = value
+        End Set
+    End Property
+
+    Public Property Td2_st1 As Double
+        Get
+            Return _td2_st1
+        End Get
+        Set(value As Double)
+            _td2_st1 = value
+        End Set
+    End Property
+
+    Public Property Td2_dk1 As Double
+        Get
+            Return _td2_dk1
+        End Get
+        Set(value As Double)
+            _td2_dk1 = value
+        End Set
+    End Property
+
+    Public Property Td2_st2 As Double
+        Get
+            Return _td2_st2
+        End Get
+        Set(value As Double)
+            _td2_st2 = value
+        End Set
+    End Property
+
+    Public Property Td2_dk2 As Double
+        Get
+            Return _td2_dk2
+        End Get
+        Set(value As Double)
+            _td2_dk2 = value
+        End Set
+    End Property
+
+    Public Property Td3_st1 As Double
+        Get
+            Return _td3_st1
+        End Get
+        Set(value As Double)
+            _td3_st1 = value
+        End Set
+    End Property
+
+    Public Property Td3_dk1 As Double
+        Get
+            Return _td3_dk1
+        End Get
+        Set(value As Double)
+            _td3_dk1 = value
+        End Set
+    End Property
+
+    Public Property Td3_st2 As Double
+        Get
+            Return _td3_st2
+        End Get
+        Set(value As Double)
+            _td3_st2 = value
+        End Set
+    End Property
+
+    Public Property Td3_dk2 As Double
+        Get
+            Return _td3_dk2
+        End Get
+        Set(value As Double)
+            _td3_dk2 = value
         End Set
     End Property
 End Class

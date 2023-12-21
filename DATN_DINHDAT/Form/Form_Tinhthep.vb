@@ -15,15 +15,15 @@
             dgv_chonthep.Rows(i).Cells("tendam").Value = Form_Main.chonthep.Rows(i)("Tên dầm")
             dgv_chonthep.Rows(i).Cells("vitri").Value = Form_Main.chonthep.Rows(i)("Vị trí")
             dgv_chonthep.Rows(i).Cells("Astt").Value = Form_Main.chonthep.Rows(i)("Astt")
-            dgv_chonthep.Rows(i).Cells("ø").Value = "6"
-            dgv_chonthep.Rows(i).Cells("ø2").Value = "6"
+            dgv_chonthep.Rows(i).Cells("ø").Value = "20"
+            dgv_chonthep.Rows(i).Cells("ø2").Value = "20"
         Next
     End Sub
 
     ' Command cho hàm S
     Private Function S(duongkinh As Integer) As Double
         ' Tính diện tích và làm tròn đến 3 chữ số thập phân
-        Dim dienTich As Double = Math.PI * ((duongkinh) / 2) ^ 2
+        Dim dienTich As Double = Math.PI * ((duongkinh / 10) / 2) ^ 2
         Return Math.Round(dienTich, 3)
     End Function
 
