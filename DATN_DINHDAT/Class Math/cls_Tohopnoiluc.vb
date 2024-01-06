@@ -1,13 +1,11 @@
-﻿Module cls_Tohopnoiluc
+﻿Imports DevExpress.Internal.WinApi.Window.Data.Xml
+
+Module cls_Tohopnoiluc
     Public Function Tohopnoiluc(data As DataTable, list_tang As List(Of String)) As DataTable
-        ' Create a new DataTable with the same structure as the input DataTable
         Dim result As New DataTable()
         result = data.Clone()
-
-        Dim Mmin_T As String
-        ' Iterate through the list of strings (list_tang)
         For i = 0 To list_tang.Count - 1
-            'Momen âm bên trái 
+#Region "Momen âm bên trái"
             Dim min1 As Double = Double.MaxValue
             Dim min2 As Double = Double.MaxValue
             Dim min1_m3 As Double = 0
@@ -37,12 +35,32 @@
                     Exit For
                 End If
             Next
-            If correspondingRow IsNot Nothing Then
-                Dim resultRow As DataRow = result.NewRow()
-                resultRow.ItemArray = correspondingRow.ItemArray
-                result.Rows.Add(resultRow)
-            End If
-            'Momen dương
+            Try
+                If correspondingRow IsNot Nothing Then
+                    Dim resultRow As DataRow = result.NewRow()
+                    resultRow.ItemArray = correspondingRow.ItemArray
+                    result.Rows.Add(resultRow)
+
+                    Dim Mmin_Trai As Object = resultRow("M3")
+                    Dim Name_dam As Object = resultRow("Tên dầm")
+                    Dim vitri As Object = resultRow("Vị trí")
+
+                    ' Sử dụng LINQ để tìm đối tượng Cls_dam trong Danhsach_Dam
+                    Dim damTimThay = From tang In congtrinh.Danhsachtang
+                                     From dam In tang.Danhsach_Dam
+                                     Where dam.Tendam.ToString.Contains(Name_dam.ToString)
+                                     Select dam
+                    If damTimThay.Any() Then
+                        damTimThay.ToList().ForEach(Sub(dam) dam.Mmin_T = Mmin_Trai)
+                        damTimThay.ToList().ForEach(Sub(dam) dam.Vitri_T = vitri)
+                    Else
+                    End If
+                End If
+            Catch ex As Exception
+                Console.WriteLine($"Lỗi xảy ra: {ex.Message}")
+            End Try
+#End Region
+#Region "Momen dương"
             Dim maxPositiveValue As Double = Double.MinValue
             Dim newRow As DataRow = Nothing
             For Each row As DataRow In data.Rows
@@ -55,11 +73,33 @@
                     End If
                 End If
             Next
-            If newRow IsNot Nothing Then
-                result.Rows.Add(newRow)
-            End If
+            Try
+                If newRow IsNot Nothing Then
+                    result.Rows.Add(newRow)
+                    Dim Mmax As Object = newRow("M3")
+                    Dim Name_dam As Object = newRow("Tên dầm")
+                    Dim vitri As Object = newRow("Vị trí")
+                    ' Sử dụng LINQ để tìm đối tượng Cls_dam trong Danhsach_Dam
+                    Dim damTimThay = From tang In congtrinh.Danhsachtang
+                                     From dam In tang.Danhsach_Dam
+                                     Where dam.Tendam.ToString.Contains(Name_dam.ToString)
+                                     Select dam
+                    If damTimThay.Any() Then
+                        damTimThay.ToList().ForEach(Sub(dam) dam.Mmax = Mmax)
+                        damTimThay.ToList().ForEach(Sub(dam) dam.Vitri_G = vitri)
+                    Else
+                    End If
+                Else
 
-            'Momen âm bên phải
+                End If
+
+            Catch ex As Exception
+                Console.WriteLine($"Lỗi xảy ra: {ex.Message}")
+            End Try
+
+
+#End Region
+#Region "Momen âm bên phải"
             Dim max1 As Double = Double.MinValue
             Dim max2 As Double = Double.MinValue
             Dim max1_m3 As Double = 0
@@ -89,12 +129,35 @@
                     Exit For
                 End If
             Next
-            If correspondingRowMax IsNot Nothing Then
-                Dim resultRowMax As DataRow = result.NewRow()
-                resultRowMax.ItemArray = correspondingRowMax.ItemArray
-                result.Rows.Add(resultRowMax)
-            End If
+            Try
+                If correspondingRowMax IsNot Nothing Then
+                    Dim resultRowMax As DataRow = result.NewRow()
+                    resultRowMax.ItemArray = correspondingRowMax.ItemArray
+                    result.Rows.Add(resultRowMax)
+
+                    Dim Mmin_Phai As Object = resultRowMax("M3")
+                    Dim Name_dam As Object = resultRowMax("Tên dầm")
+                    Dim vitri As Object = resultRowMax("Vị trí")
+                    ' Sử dụng LINQ để tìm đối tượng Cls_dam trong Danhsach_Dam
+                    Dim damTimThay = From tang In congtrinh.Danhsachtang
+                                     From dam In tang.Danhsach_Dam
+                                     Where dam.Tendam.ToString.Contains(Name_dam.ToString)
+                                     Select dam
+                    If damTimThay.Any() Then
+                        damTimThay.ToList().ForEach(Sub(dam) dam.Mmin_P = Mmin_Phai)
+                        damTimThay.ToList().ForEach(Sub(dam) dam.Vitri_P = vitri)
+                    Else
+                    End If
+                End If
+
+            Catch ex As Exception
+                Console.WriteLine($"Lỗi xảy ra: {ex.Message}")
+            End Try
         Next
+#End Region
+        'For Each tang As Cls_tang In congtrinh.Danhsachtang
+
+        'Next
         Return result
     End Function
 End Module

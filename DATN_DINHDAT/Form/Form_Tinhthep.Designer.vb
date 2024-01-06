@@ -26,6 +26,7 @@ Partial Class Form_Tinhthep
         Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
+        Me.TabPage3 = New System.Windows.Forms.TabPage()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.dgv_tinhthep = New System.Windows.Forms.DataGridView()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
@@ -41,23 +42,37 @@ Partial Class Form_Tinhthep
         Me.μ = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Astc = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.kiemtra = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Button1 = New System.Windows.Forms.Button()
+        Me.Panel1 = New System.Windows.Forms.Panel()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.dgv_tinhthep, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage2.SuspendLayout()
         CType(Me.dgv_chonthep, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel1.SuspendLayout()
         Me.SuspendLayout()
         '
         'TabControl1
         '
         Me.TabControl1.Controls.Add(Me.TabPage1)
         Me.TabControl1.Controls.Add(Me.TabPage2)
+        Me.TabControl1.Controls.Add(Me.TabPage3)
         Me.TabControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TabControl1.Location = New System.Drawing.Point(0, 0)
+        Me.TabControl1.Location = New System.Drawing.Point(0, 37)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(1043, 608)
+        Me.TabControl1.Size = New System.Drawing.Size(1043, 571)
         Me.TabControl1.TabIndex = 0
+        '
+        'TabPage3
+        '
+        Me.TabPage3.Location = New System.Drawing.Point(4, 25)
+        Me.TabPage3.Name = "TabPage3"
+        Me.TabPage3.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage3.Size = New System.Drawing.Size(1035, 542)
+        Me.TabPage3.TabIndex = 2
+        Me.TabPage3.Text = "Tính cốt đai"
+        Me.TabPage3.UseVisualStyleBackColor = True
         '
         'TabPage1
         '
@@ -65,7 +80,7 @@ Partial Class Form_Tinhthep
         Me.TabPage1.Location = New System.Drawing.Point(4, 25)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(1035, 579)
+        Me.TabPage1.Size = New System.Drawing.Size(1035, 542)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Tính As"
         Me.TabPage1.UseVisualStyleBackColor = True
@@ -104,7 +119,7 @@ Partial Class Form_Tinhthep
         Me.dgv_tinhthep.RowHeadersVisible = False
         Me.dgv_tinhthep.RowHeadersWidth = 51
         Me.dgv_tinhthep.RowTemplate.Height = 24
-        Me.dgv_tinhthep.Size = New System.Drawing.Size(1029, 573)
+        Me.dgv_tinhthep.Size = New System.Drawing.Size(1029, 536)
         Me.dgv_tinhthep.TabIndex = 1
         '
         'TabPage2
@@ -113,7 +128,7 @@ Partial Class Form_Tinhthep
         Me.TabPage2.Location = New System.Drawing.Point(4, 25)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(1035, 579)
+        Me.TabPage2.Size = New System.Drawing.Size(1035, 542)
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "Chọn thép"
         Me.TabPage2.UseVisualStyleBackColor = True
@@ -153,7 +168,7 @@ Partial Class Form_Tinhthep
         Me.dgv_chonthep.RowHeadersVisible = False
         Me.dgv_chonthep.RowHeadersWidth = 51
         Me.dgv_chonthep.RowTemplate.Height = 24
-        Me.dgv_chonthep.Size = New System.Drawing.Size(1029, 573)
+        Me.dgv_chonthep.Size = New System.Drawing.Size(1029, 536)
         Me.dgv_chonthep.TabIndex = 1
         '
         'tang
@@ -180,7 +195,7 @@ Partial Class Form_Tinhthep
         'theploai1
         '
         Me.theploai1.FillWeight = 62.94118!
-        Me.theploai1.HeaderText = "Thép loại 1"
+        Me.theploai1.HeaderText = "Thép lớp 1"
         Me.theploai1.MinimumWidth = 6
         Me.theploai1.Name = "theploai1"
         '
@@ -195,7 +210,7 @@ Partial Class Form_Tinhthep
         'theploai2
         '
         Me.theploai2.FillWeight = 62.94118!
-        Me.theploai2.HeaderText = "Thép loại 2"
+        Me.theploai2.HeaderText = "Thép lớp 2"
         Me.theploai2.MinimumWidth = 6
         Me.theploai2.Name = "theploai2"
         '
@@ -237,12 +252,32 @@ Partial Class Form_Tinhthep
         Me.kiemtra.MinimumWidth = 6
         Me.kiemtra.Name = "kiemtra"
         '
+        'Button1
+        '
+        Me.Button1.Anchor = System.Windows.Forms.AnchorStyles.Right
+        Me.Button1.Location = New System.Drawing.Point(912, 1)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(127, 36)
+        Me.Button1.TabIndex = 1
+        Me.Button1.Text = "Lưu cốt thép"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
+        'Panel1
+        '
+        Me.Panel1.Controls.Add(Me.Button1)
+        Me.Panel1.Dock = System.Windows.Forms.DockStyle.Top
+        Me.Panel1.Location = New System.Drawing.Point(0, 0)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(1043, 37)
+        Me.Panel1.TabIndex = 2
+        '
         'Form_Tinhthep
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1043, 608)
         Me.Controls.Add(Me.TabControl1)
+        Me.Controls.Add(Me.Panel1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "Form_Tinhthep"
         Me.Text = "Form_Tinhthep"
@@ -251,6 +286,7 @@ Partial Class Form_Tinhthep
         CType(Me.dgv_tinhthep, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPage2.ResumeLayout(False)
         CType(Me.dgv_chonthep, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -260,6 +296,7 @@ Partial Class Form_Tinhthep
     Friend WithEvents dgv_tinhthep As DataGridView
     Friend WithEvents TabPage2 As TabPage
     Friend WithEvents dgv_chonthep As DataGridView
+    Friend WithEvents TabPage3 As TabPage
     Friend WithEvents tang As DataGridViewTextBoxColumn
     Friend WithEvents tendam As DataGridViewTextBoxColumn
     Friend WithEvents vitri As DataGridViewTextBoxColumn
@@ -271,4 +308,6 @@ Partial Class Form_Tinhthep
     Friend WithEvents μ As DataGridViewTextBoxColumn
     Friend WithEvents Astc As DataGridViewTextBoxColumn
     Friend WithEvents kiemtra As DataGridViewTextBoxColumn
+    Friend WithEvents Button1 As Button
+    Friend WithEvents Panel1 As Panel
 End Class

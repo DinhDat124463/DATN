@@ -102,7 +102,4 @@ D:\Máy tính\Hoc\DATN\DATN_DINHDAT\obj\Debug\Interop.VDStdLib5.dll
 D:\Máy tính\Hoc\DATN\DATN_DINHDAT\obj\Debug\AxInterop.VDProLib5.dll
 D:\Máy tính\Hoc\DATN\DATN_DINHDAT\obj\Debug\AxInterop.VDStdLib5.dll
 D:\Máy tính\Hoc\DATN\DATN_DINHDAT\obj\Debug\DATN_DINHDAT.vbproj.ResolveComReference.cache
-D:\Máy tính\Hoc\DATN\DATN_DINHDAT\obj\Debug\DATN_DINHDAT.vbproj.AssemblyReference.cache
-D:\Máy tính\Hoc\DATN\DATN_DINHDAT\obj\Debug\DATN_DINHDAT.vbproj.SuggestedBindingRedirects.cache
-D:\Máy tính\Hoc\DATN\DATN_DINHDAT\obj\Debug\DATN_DINHDAT.vbproj.CoreCompileInputs.cache
-D:\Máy tính\Hoc\DATN\DATN_DINHDAT\obj\Debug\DATN_DINHDAT.vbproj.CopyComplete
+D:\Máy tính\Hoc\DATN\DATN_DINHDAT\obj\Debug\DATN_DINHDAT.vbprojResolveAssemblyReference.cache

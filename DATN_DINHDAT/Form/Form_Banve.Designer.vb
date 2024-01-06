@@ -20,28 +20,66 @@ Partial Class Form_Banve
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form_Banve))
-        Me.AxVDPro1 = New AxVDProLib5.AxVDPro()
+        Me.Vecto = New AxVDProLib5.AxVDPro()
         Me.Panel1 = New System.Windows.Forms.Panel()
-        CType(Me.AxVDPro1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Button2 = New System.Windows.Forms.Button()
+        Me.Button1 = New System.Windows.Forms.Button()
+        Me.btn_ve = New System.Windows.Forms.Button()
+        Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
+        CType(Me.Vecto, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel1.SuspendLayout()
         Me.SuspendLayout()
         '
-        'AxVDPro1
+        'Vecto
         '
-        Me.AxVDPro1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.AxVDPro1.Enabled = True
-        Me.AxVDPro1.Location = New System.Drawing.Point(0, 0)
-        Me.AxVDPro1.Name = "AxVDPro1"
-        Me.AxVDPro1.OcxState = CType(resources.GetObject("AxVDPro1.OcxState"), System.Windows.Forms.AxHost.State)
-        Me.AxVDPro1.Size = New System.Drawing.Size(969, 583)
-        Me.AxVDPro1.TabIndex = 1
+        Me.Vecto.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Vecto.Enabled = True
+        Me.Vecto.Location = New System.Drawing.Point(0, 0)
+        Me.Vecto.Name = "Vecto"
+        Me.Vecto.OcxState = CType(resources.GetObject("Vecto.OcxState"), System.Windows.Forms.AxHost.State)
+        Me.Vecto.Size = New System.Drawing.Size(969, 583)
+        Me.Vecto.TabIndex = 1
         '
         'Panel1
         '
+        Me.Panel1.Controls.Add(Me.Button2)
+        Me.Panel1.Controls.Add(Me.Button1)
+        Me.Panel1.Controls.Add(Me.btn_ve)
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(969, 30)
+        Me.Panel1.Size = New System.Drawing.Size(969, 54)
         Me.Panel1.TabIndex = 2
+        '
+        'Button2
+        '
+        Me.Button2.Anchor = System.Windows.Forms.AnchorStyles.Right
+        Me.Button2.Location = New System.Drawing.Point(745, 3)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(103, 48)
+        Me.Button2.TabIndex = 2
+        Me.Button2.Text = "Mặt cắt ngang"
+        Me.Button2.UseVisualStyleBackColor = True
+        '
+        'Button1
+        '
+        Me.Button1.Anchor = System.Windows.Forms.AnchorStyles.Right
+        Me.Button1.Location = New System.Drawing.Point(854, 3)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(103, 48)
+        Me.Button1.TabIndex = 1
+        Me.Button1.Text = "Xuất dwg"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
+        'btn_ve
+        '
+        Me.btn_ve.Anchor = System.Windows.Forms.AnchorStyles.Right
+        Me.btn_ve.Location = New System.Drawing.Point(636, 3)
+        Me.btn_ve.Name = "btn_ve"
+        Me.btn_ve.Size = New System.Drawing.Size(103, 48)
+        Me.btn_ve.TabIndex = 0
+        Me.btn_ve.Text = "Mặt cắt dọc"
+        Me.btn_ve.UseVisualStyleBackColor = True
         '
         'Form_Banve
         '
@@ -49,15 +87,20 @@ Partial Class Form_Banve
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(969, 583)
         Me.Controls.Add(Me.Panel1)
-        Me.Controls.Add(Me.AxVDPro1)
+        Me.Controls.Add(Me.Vecto)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "Form_Banve"
         Me.Text = "Form_Banve"
-        CType(Me.AxVDPro1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Vecto, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
 
-    Friend WithEvents AxVDPro1 As AxVDProLib5.AxVDPro
+    Friend WithEvents Vecto As AxVDProLib5.AxVDPro
     Friend WithEvents Panel1 As Panel
+    Friend WithEvents btn_ve As Button
+    Friend WithEvents Button2 As Button
+    Friend WithEvents Button1 As Button
+    Friend WithEvents SaveFileDialog1 As SaveFileDialog
 End Class

@@ -7,6 +7,9 @@
     Private m_Mmax As Double
     Private m_Mmin_P As Double
     Private m_Qmax As Double
+    Private m_vitri_T As Double
+    Private m_vitri_G As Double
+    Private m_vitri_P As Double
     Private _td1_st1, _td1_dk1, _td1_st2, _td1_dk2 As Double
     Private _td2_st1, _td2_dk1, _td2_st2, _td2_dk2 As Double
     Private _td3_st1, _td3_dk1, _td3_st2, _td3_dk2 As Double
@@ -188,6 +191,32 @@
         End Get
         Set(value As Double)
             _td3_dk2 = value
+        End Set
+    End Property
+    Public Property Vitri_T As Double
+        Get
+            Return m_vitri_T
+        End Get
+        Set(value As Double)
+            m_vitri_T = value
+        End Set
+    End Property
+
+    Public Property Vitri_G As Double
+        Get
+            Return m_vitri_G
+        End Get
+        Set(value As Double)
+            m_vitri_G = value
+        End Set
+    End Property
+
+    Public Property Vitri_P As Double
+        Get
+            Return m_vitri_P
+        End Get
+        Set(value As Double)
+            m_vitri_P = value
         End Set
     End Property
 End Class

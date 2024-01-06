@@ -7,18 +7,30 @@
     Private Sub Tinh_As()
         ' Lấy số lượng dòng từ DataTable trong Form_Main
         Dim a As Integer = Form_Main.chonthep.Rows.Count
-
         ' Gắn dữ liệu từ cột 1 và cột 3 của DataTable1 vào cột 1 và cột 5 của DataGridView
         For i As Integer = 0 To a - 1
             dgv_chonthep.Rows.Add()
+
             dgv_chonthep.Rows(i).Cells("tang").Value = Form_Main.chonthep.Rows(i)("Tầng")
             dgv_chonthep.Rows(i).Cells("tendam").Value = Form_Main.chonthep.Rows(i)("Tên dầm")
             dgv_chonthep.Rows(i).Cells("vitri").Value = Form_Main.chonthep.Rows(i)("Vị trí")
             dgv_chonthep.Rows(i).Cells("Astt").Value = Form_Main.chonthep.Rows(i)("Astt")
             dgv_chonthep.Rows(i).Cells("ø").Value = "20"
             dgv_chonthep.Rows(i).Cells("ø2").Value = "20"
+
+            ' chọn số lượng thanh thép tạm thời
+            Dim soluongthanhthep As Integer = chonthep(dgv_chonthep.Rows(i).Cells("Astt").Value, dgv_chonthep.Rows(i).Cells("ø").Value)
+            If soluongthanhthep > 4 Then
+                dgv_chonthep.Rows(i).Cells("theploai1").Value = 4
+                dgv_chonthep.Rows(i).Cells("theploai2").Value = soluongthanhthep - 4
+            ElseIf soluongthanhthep <= 4 Then
+                dgv_chonthep.Rows(i).Cells("theploai1").Value = soluongthanhthep
+            End If
         Next
     End Sub
+    Function chonthep(A_s As Double, duongkinh As Integer) As Double
+        Return Int(A_s / S(duongkinh)) + 1
+    End Function
 
     ' Command cho hàm S
     Private Function S(duongkinh As Integer) As Double
@@ -71,13 +83,10 @@
                         dgv_chonthep.Rows(rowIndex).Cells("kiemtra").Value = ""
                     End If
                 Else
-                    ' Xử lý trường hợp "ø" là DBNull hoặc Nothing
-                    ' ...
                 End If
             End If
         End If
     End Sub
-
     ' Command cho hàm GetCellValueAsInteger
     Private Function GetCellValueAsInteger(cell As DataGridViewCell) As Integer
         ' Kiểm tra ô có tồn tại và không phải DBNull hoặc Nothing
@@ -97,4 +106,66 @@
             Return 0
         End If
     End Function
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        Dim tendam As String = ""
+        Dim vitri As Double
+        Dim ø1 As Double
+        Dim theplop1 As Double
+        Dim ø2 As Double
+        Dim theplop2 As Double
+        If dgv_chonthep.RowCount > 1 Then
+            For i = 0 To dgv_chonthep.RowCount - 1
+                If dgv_chonthep.Rows(i).Cells("tendam").Value IsNot Nothing Then
+                    tendam = dgv_chonthep.Rows(i).Cells("tendam").Value.ToString()
+                End If
+
+                If dgv_chonthep.Rows(i).Cells("vitri").Value IsNot Nothing Then
+                    vitri = dgv_chonthep.Rows(i).Cells("vitri").Value.ToString()
+                End If
+
+                If dgv_chonthep.Rows(i).Cells("ø").Value IsNot Nothing Then
+                    ø1 = dgv_chonthep.Rows(i).Cells("ø").Value.ToString()
+                End If
+
+                If dgv_chonthep.Rows(i).Cells("theploai1").Value IsNot Nothing Then
+                    theplop1 = dgv_chonthep.Rows(i).Cells("theploai1").Value.ToString()
+                End If
+
+                If dgv_chonthep.Rows(i).Cells("ø2").Value IsNot Nothing Then
+                    ø2 = dgv_chonthep.Rows(i).Cells("ø2").Value.ToString()
+                End If
+
+                If dgv_chonthep.Rows(i).Cells("theploai2").Value IsNot Nothing Then
+                    theplop2 = dgv_chonthep.Rows(i).Cells("theploai2").Value.ToString()
+                End If
+
+                For Each tang As Cls_tang In congtrinh.Danhsachtang
+                    For Each dam As Cls_dam In tang.Danhsach_Dam
+                        If tendam.Contains(dam.Tendam.ToString()) AndAlso
+                           (dam.Vitri_T = vitri OrElse dam.Vitri_G = vitri OrElse dam.Vitri_P = vitri) Then
+
+                            If dam.Vitri_T = vitri Then
+                                dam.Td1_st1 = theplop1
+                                dam.Td1_dk1 = ø1
+                                dam.Td1_st2 = theplop2
+                                dam.Td1_dk2 = ø2
+                            ElseIf dam.Vitri_G = vitri Then
+                                dam.Td2_st1 = theplop1
+                                dam.Td2_dk1 = ø1
+                                dam.Td2_st2 = theplop2
+                                dam.Td2_dk2 = ø2
+                            ElseIf dam.Vitri_P = vitri Then
+                                dam.Td3_st1 = theplop1
+                                dam.Td3_dk1 = ø1
+                                dam.Td3_st2 = theplop2
+                                dam.Td3_dk2 = ø2
+                            End If
+                        End If
+                    Next
+                Next
+            Next
+            MessageBox.Show("Đã lưu thông tin cốt thép")
+        End If
+    End Sub
 End Class

@@ -61,19 +61,20 @@ Public Class Form_Main
             Tietdien_Dam = Read_Access(filePath)
             For Each tang As Cls_tang In congtrinh.Danhsachtang
                 For Each row As DataRow In Tietdien_Dam.Rows
-                    Dim tenDam As String = row("Tên dầm").ToString()
-                    Dim chieudaidam As String = row("Chiều dài dầm").ToString()
-                    Dim berong As String = row("Bề rộng").ToString()
-                    Dim chieucao As String = row("Chiều cao").ToString()
-                    Dim dam As New Cls_dam()
-                    dam.Tendam = tenDam
-                    dam.B = berong
-                    dam.L = chieudaidam
-                    dam.H = chieucao
-                    tang.Danhsach_Dam.Add(dam)
+                    If row(0).ToString().Contains(tang.TenTang.ToString()) Then
+                        Dim tenDam As String = row("Tên dầm").ToString()
+                        Dim chieudaidam As String = row("Chiều dài dầm").ToString()
+                        Dim berong As String = row("Bề rộng").ToString()
+                        Dim chieucao As String = row("Chiều cao").ToString()
+                        Dim dam As New Cls_dam()
+                        dam.Tendam = tenDam
+                        dam.B = berong
+                        dam.L = chieudaidam
+                        dam.H = chieucao
+                        tang.Danhsach_Dam.Add(dam)
+                    End If
                 Next
             Next
-
             Dim unit1 As String = Unit(filePath)
             Dim commaIndex As Integer = unit1.IndexOf(",")
             lb_taitrong.Text = "Đơn vị tải trọng: " & unit1.Substring(0, commaIndex)
@@ -103,7 +104,6 @@ Public Class Form_Main
                     End If
                 Next
             Next
-
             ' Tiết diện dầm
             Dim tietdien As New Form_Dulieudam()
             panel_main.Controls.Clear()
@@ -133,7 +133,12 @@ Public Class Form_Main
 
 
     Private Sub BarButtonItem2_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BarButtonItem2.ItemClick
-
+        Dim vethep As New Form_Banve()
+        panel_main.Controls.Clear()
+        vethep.TopLevel = False
+        vethep.Dock = DockStyle.Fill
+        panel_main.Controls.Add(vethep)
+        vethep.Show()
     End Sub
 
     Private Sub BarButtonItem6_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BarButtonItem6.ItemClick

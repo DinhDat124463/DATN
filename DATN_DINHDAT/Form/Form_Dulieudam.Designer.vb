@@ -21,13 +21,13 @@ Partial Class Form_Dulieudam
     Private Sub InitializeComponent()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
-        Me.TabPage2 = New System.Windows.Forms.TabPage()
         Me.dgv_tietdien = New System.Windows.Forms.DataGridView()
+        Me.TabPage2 = New System.Windows.Forms.TabPage()
         Me.dgv_noiluc = New System.Windows.Forms.DataGridView()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
-        Me.TabPage2.SuspendLayout()
         CType(Me.dgv_tietdien, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.TabPage2.SuspendLayout()
         CType(Me.dgv_noiluc, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -53,17 +53,6 @@ Partial Class Form_Dulieudam
         Me.TabPage1.Text = "Tiết diện dầm"
         Me.TabPage1.UseVisualStyleBackColor = True
         '
-        'TabPage2
-        '
-        Me.TabPage2.Controls.Add(Me.dgv_noiluc)
-        Me.TabPage2.Location = New System.Drawing.Point(4, 25)
-        Me.TabPage2.Name = "TabPage2"
-        Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(1047, 554)
-        Me.TabPage2.TabIndex = 1
-        Me.TabPage2.Text = "Nội lực dầm"
-        Me.TabPage2.UseVisualStyleBackColor = True
-        '
         'dgv_tietdien
         '
         Me.dgv_tietdien.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
@@ -76,6 +65,17 @@ Partial Class Form_Dulieudam
         Me.dgv_tietdien.RowTemplate.Height = 24
         Me.dgv_tietdien.Size = New System.Drawing.Size(1041, 548)
         Me.dgv_tietdien.TabIndex = 0
+        '
+        'TabPage2
+        '
+        Me.TabPage2.Controls.Add(Me.dgv_noiluc)
+        Me.TabPage2.Location = New System.Drawing.Point(4, 25)
+        Me.TabPage2.Name = "TabPage2"
+        Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage2.Size = New System.Drawing.Size(1047, 554)
+        Me.TabPage2.TabIndex = 1
+        Me.TabPage2.Text = "Nội lực dầm"
+        Me.TabPage2.UseVisualStyleBackColor = True
         '
         'dgv_noiluc
         '
@@ -101,8 +101,8 @@ Partial Class Form_Dulieudam
         Me.Text = "Form_Dulieudam"
         Me.TabControl1.ResumeLayout(False)
         Me.TabPage1.ResumeLayout(False)
-        Me.TabPage2.ResumeLayout(False)
         CType(Me.dgv_tietdien, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.TabPage2.ResumeLayout(False)
         CType(Me.dgv_noiluc, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 

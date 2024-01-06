@@ -45,6 +45,8 @@ Partial Class Form_Main
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.lb_taitrong = New System.Windows.Forms.Label()
         Me.lb_chieudai = New System.Windows.Forms.Label()
+        Me.BarButtonItem7 = New DevExpress.XtraBars.BarButtonItem()
+        Me.BarButtonItem11 = New DevExpress.XtraBars.BarButtonItem()
         CType(Me.RibbonControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
@@ -53,10 +55,10 @@ Partial Class Form_Main
         'RibbonControl1
         '
         Me.RibbonControl1.ExpandCollapseItem.Id = 0
-        Me.RibbonControl1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.RibbonControl1.ExpandCollapseItem, Me.RibbonControl1.SearchEditItem, Me.BarButtonItem1, Me.btn_luu, Me.BarButtonItem3, Me.BarButtonItem4, Me.btn_tietdien, Me.btn_noiluc, Me.btn_tohop, Me.BarButtonItem8, Me.BarButtonItem9, Me.BarButtonItem10, Me.BarButtonItem2, Me.BarButtonItem5, Me.BarButtonItem6})
+        Me.RibbonControl1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.RibbonControl1.ExpandCollapseItem, Me.RibbonControl1.SearchEditItem, Me.BarButtonItem1, Me.btn_luu, Me.BarButtonItem3, Me.BarButtonItem4, Me.btn_tietdien, Me.btn_noiluc, Me.btn_tohop, Me.BarButtonItem8, Me.BarButtonItem9, Me.BarButtonItem10, Me.BarButtonItem2, Me.BarButtonItem5, Me.BarButtonItem6, Me.BarButtonItem7, Me.BarButtonItem11})
         Me.RibbonControl1.Location = New System.Drawing.Point(0, 0)
         Me.RibbonControl1.Margin = New System.Windows.Forms.Padding(4, 2, 4, 2)
-        Me.RibbonControl1.MaxItemId = 14
+        Me.RibbonControl1.MaxItemId = 16
         Me.RibbonControl1.Name = "RibbonControl1"
         Me.RibbonControl1.Pages.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPage() {Me.RibbonPage1})
         Me.RibbonControl1.Size = New System.Drawing.Size(1074, 183)
@@ -168,6 +170,7 @@ Partial Class Form_Main
         '
         Me.RibbonPageGroup1.ItemLinks.Add(Me.BarButtonItem1)
         Me.RibbonPageGroup1.ItemLinks.Add(Me.BarButtonItem4)
+        Me.RibbonPageGroup1.ItemLinks.Add(Me.BarButtonItem7)
         Me.RibbonPageGroup1.Name = "RibbonPageGroup1"
         Me.RibbonPageGroup1.Text = "Mở File"
         '
@@ -255,6 +258,18 @@ Partial Class Form_Main
         Me.lb_chieudai.TabIndex = 1
         Me.lb_chieudai.Text = "Đơn vị chiều dài:"
         '
+        'BarButtonItem7
+        '
+        Me.BarButtonItem7.Caption = "Lưu"
+        Me.BarButtonItem7.Id = 14
+        Me.BarButtonItem7.Name = "BarButtonItem7"
+        '
+        'BarButtonItem11
+        '
+        Me.BarButtonItem11.Caption = "BarButtonItem11"
+        Me.BarButtonItem11.Id = 15
+        Me.BarButtonItem11.Name = "BarButtonItem11"
+        '
         'Form_Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 16.0!)
@@ -300,4 +315,6 @@ Partial Class Form_Main
     Friend WithEvents lb_chieudai As Label
     Friend WithEvents RibbonPageGroup2 As DevExpress.XtraBars.Ribbon.RibbonPageGroup
     Friend WithEvents BarButtonItem6 As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents BarButtonItem7 As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents BarButtonItem11 As DevExpress.XtraBars.BarButtonItem
 End Class
